@@ -1,0 +1,89 @@
+<div class="hold-transition login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="../../index2.html"><b>Admin</b>LTE</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Iniciar Sesion</p>
+
+        <form [formGroup]="formularioLogin" (ngSubmit)="login()">
+            <!-- INICIO FORMULARIO LOGIN FIELD EMAIL -->
+            <div class="input-group mb-3">
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email" formControlName="email" />
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- INICIO ERRORES FIELD EMAIL -->
+            <div class="col-xs-12 text-danger">
+                <p *ngIf="formularioLogin.get('email').hasError('required') && (formularioLogin.get('email').dirty || formularioLogin.get('email').touched)">El email es requerido</p>
+            </div>
+            <div class="col-xs-12 text-danger">
+                <p *ngIf="formularioLogin.get('email').hasError('email') && (formularioLogin.get('email').dirty || formularioLogin.get('email').touched)">Email no valido</p>
+            </div>
+            <!-- FIN ERRORES FIELD EMAIL -->
+            <!-- FIN FORMULARIO LOGIN FIELD EMAIL -->
+
+            <!-- INICIO FORMULARIO LOGIN FIELD PASSWORD -->
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Password" formControlName="password" />
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- INICIO ERRORES FIELD PASSWORD -->
+            <div class="col-xs-12 text-danger">
+                <p *ngIf="formularioLogin.get('password').hasError('required') && (formularioLogin.get('password').dirty || formularioLogin.get('password').touched)">El password es requerido</p>
+            </div>
+            <!-- FIN ERRORES FIELD PASSOWRD -->
+            <!-- FIN FORMULARIO LOGIN FIELD PASSWORD -->
+            
+            <div class="row">
+                <div class="col-8">
+                    <div class="icheck-primary">
+                        <input type="checkbox" id="remember" />
+                        <label for="remember"> Recuerdame </label>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-4">
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="formularioLogin.invalid">Sign In</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+
+        <div class="social-auth-links text-center mb-3">
+            <p>- O continue con -</p>
+            <!-- LOGIN OAUTH WITH GOOGLE API -->
+            <a href="#" class="btn btn-block btn-danger">
+                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+            </a>
+
+            <!-- LOGIN OAUTH WITH FACEBOOK API -->
+            <a href="#" class="btn btn-block btn-primary">
+                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+            </a>
+        </div>
+        <!-- /.social-auth-links -->
+
+        <!-- NAVEGACION COMPONENTE FORGOT-PASSWORD -->
+        <p class="mb-1">
+            <a routerLink="/forgot-password">Olvidaste tu contraseña?</a>
+        </p>
+    
+        <!-- NAVEGACION COMPONENTE REGISTER -->
+        <p class="mb-0">
+            <a routerLink="/register" class="text-center">No tienes una cuenta?</a>
+        </p>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,167 @@
+<div class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <a href="../../index2.html"><b>Admin</b>LTE</a>
+        </div>
+        
+        <div class="card">
+            <div class="card-body register-card-body">
+            <h3 class="login-box-msg">Registrate ahora</h3>
+
+            <form [formGroup]="formularioRegistro" (ngSubmit)="registrarNuevoUsuario()">
+                
+                <!-- INICIO FORMULARIO REGISTRO FIELD NOMBREAPELLIDO -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Nombre y Apellido" formControlName="nombreApellido">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INICIO ERRORES FIELD NOMBREAPELLIDO -->
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="formularioRegistro.get('nombreApellido').hasError('required') && (formularioRegistro.get('nombreApellido').dirty || formularioRegistro.get('nombreApellido').touched)">El nombre y el apellido son requeridos</p>
+                </div> 
+                <!-- FIN ERRORES FIELD NOMBREAPELLIDO -->
+                <!-- FIN FORMULARIO REGISTRO FIELD NOMBREAPELLIDO -->
+
+                <!-- INICIO FORMULARIO REGISTRO FIELD EMAIL -->
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INICIO ERRORES FIELD EMAIL -->
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="formularioRegistro.get('email').hasError('required') && (formularioRegistro.get('email').dirty || formularioRegistro.get('email').touched)">El email es requerido</p>
+                </div>
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="formularioRegistro.get('email').hasError('email') && (formularioRegistro.get('email').dirty || formularioRegistro.get('email').touched)">Email no valido</p>
+                </div>
+                <!-- FIN ERRORES FIELD EMAIL --> 
+                <!-- FIN FORMULARIO REGISTRO FIELD EMAIL -->
+
+                <!-- INICIO FORMULARIO REGISTRO FIELD PASSWORD -->
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Contraseña" formControlName="password">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INICIO ERRORES FIELD PASSWORD -->
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="formularioRegistro.get('password').hasError('required') && (formularioRegistro.get('password').dirty || formularioRegistro.get('password').touched)">La contraseña es requerida</p>
+                </div>
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="checkPassword()">Las contraseñas no son iguales</p>
+                </div>
+                <!-- FIN ERRORES FIELD PASSWORD -->
+                <!-- FIN FORMULARIO REGISTRO FIELD PASSWORD -->
+    
+                <!-- INICIO FORMULARIO REGISTRO FIELD CONFIRMPASSWORD -->
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Confirmar contraseña" formControlName="passwordConfirm">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INICIO ERRORES FIELD PASSWORDCONFIRM -->
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="formularioRegistro.get('passwordConfirm').hasError('required') && (formularioRegistro.get('passwordConfirm').dirty || formularioRegistro.get('passwordConfirm').touched)">Por favor ingrese de nuevo la contraseña</p>
+                </div>
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="checkPassword()">Las contraseñas no son iguales</p>
+                </div>
+                <!-- FIN ERRORES FIELD PASSWORDCONFIRM -->
+                <!-- FIN FORMULARIO REGISTRO FIELD CONFIRMPASSWORD -->
+
+                <!-- INICIO FORMULARIO REGISTRO FIELD FECHANACIMIENTO -->
+                <div class="input-group mb-3">
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="date" class="form-control datetimepicker-input" placeholder="27/01/2020" formControlName="fechaNacimiento" />
+                    </div>
+                </div>
+
+                <!-- INICIO ERRORES FIELD FECHANACIMIENTO-->
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="formularioRegistro.get('fechaNacimiento').hasError('required') && (formularioRegistro.get('fechaNacimiento').dirty || formularioRegistro.get('fechaNacimiento').touched)">La fecha de nacimiento es requerida</p>
+                </div>
+                <!-- FIN ERRORES FIELD FECHANACIMIENTO -->
+                <!-- FIN FORMULARIO REGISTRO FIELD FECHANACIMIENTO -->
+        
+                <!-- INICIO FORMULARIO REGISTRO FIELD GENERO -->
+                <div class="input-group mb-3">
+                    <select class="form-control" formControlName="genero">
+                        <option [value]="null" disabled>-- Seleccionar Sexo --</option>
+                        <option [value]="'M'">Masculino</option>
+                        <option [value]="'F'">Femenino</option>
+                    </select>
+                </div>    
+            
+                <!-- INICIO ERRORES FIELD GENERO -->
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="formularioRegistro.get('genero').hasError('required') && (formularioRegistro.get('genero').dirty || formularioRegistro.get('genero').touched)">El sexo es requerido</p>
+                </div>
+                <!-- FIN ERRORES FIELD GENERO -->
+                <!-- FIN FORMULARIO REGISTRO FIELD GENERO -->
+
+                <!-- INICIO FORMULARIO REGISTRO FIELD PAIS -->
+                <div class="input-group mb-3">
+                    <select class="form-control" formControlName="pais">
+                        <option [value]="null" disabled>-- Seleccionar Pais de Origen --</option>
+                        <option [value]="'M'">Argentina</option>
+                        <option [value]="'F'">Brasil</option>
+                    </select>
+                </div>
+                
+                <!-- INICIO ERRORES FIELD PAIS -->
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="formularioRegistro.get('pais').hasError('required') && (formularioRegistro.get('pais').dirty || formularioRegistro.get('pais').touched)">Debe seleccionar un Pais</p>
+                </div>
+                <!-- FIN ERRORES FIELD PAIS -->
+                <!-- FIN FORMULARIO REGISTRO FIELD PAIS -->
+
+                <!-- INICIO FORMULARIO REGISTRO FIELD TERMINOS -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="agreeTerms" name="terms" value="agree" formControlName="terminos">
+                            <label for="agreeTerms">
+                                Acepto todos los <a href="#">terminos</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INICIO ERRORES FIELD TERMINOS -->
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="formularioRegistro.get('terminos').hasError('required') && (formularioRegistro.get('terminos').dirty || formularioRegistro.get('terminos').touched)">Los terminos son requeridos</p>
+                </div>
+                <!-- FIN ERRORES FIELD TERMINOS -->
+                <!-- INICIO FORMULARIO REGISTRO FIELD TERMINOS -->  
+
+                <div class="row">
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="formularioRegistro.invalid">Registrarse</button>
+                </div>
+            </form>
+        
+            <!-- NAVEGACION COMPONENTE LOGIN -->
+            <a routerLink="/login" class="text-center">Ya tengo una cuenta!</a>
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+    <!-- /.register-box -->
+</div>

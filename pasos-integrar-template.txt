@@ -1,0 +1,36 @@
+Pasos para integrar el Template AdminLT3 con Anuglar 9 / 10
+
+-- Pre-requisitos 
+    * Visual Studio Code (https://code.visualstudio.com/download)
+
+-- Pasos
+    1. Crear proyecto con Angular Cli ---> ng new nombre-app
+    2. Instalar el template de AdminLT3 ---> npm install admin-lte@^3.0 --save
+        - Verificar instalacion en package.json
+    3. Elejir el admin dashboard (https://adminlte.io/themes/dev/AdminLTE/index.html)
+        - Actualizar angular.json styles y scripts (Actuaclizar con los css y js correspondientes del template)
+        -- STYLES Y SCRIPTS
+             "styles": [
+              "src/styles.sass",
+              "node_modules/admin-lte/plugins/fontawesome-free/css/all.css",
+              "node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.css",
+              "node_modules/admin-lte/dist/css/adminlte.css"
+            ],
+            "scripts": [
+              "node_modules/admin-lte/plugins/jquery/jquery.js",
+              "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.js",
+              "node_modules/admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js",
+              "node_modules/admin-lte/dist/js/adminlte.js",
+              "node_modules/admin-lte/dist/js/demo.js",
+              "node_modules/admin-lte/plugins/jquery-mousewheel/jquery.mousewheel.js",
+              "node_modules/admin-lte/plugins/raphael/raphael.js",
+              "node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.js",
+              "node_modules/admin-lte/plugins/chart.js/Chart.js",
+              "node_modules/admin-lte/dist/js/pages/dashboard2.js"
+            ]
+
+    4. Modificar el index.html 
+    5. Modificar el app.component.html
+    6. Copiar la carpeta de imagenes dentro del directorio de assets de nuestro proyecto de angular
+    7. Remplazar el path de las imagenes del app.component.html por el nuevo path del directorio del assets de nuestro proyecto angular
+
