@@ -1,0 +1,28 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="wrapper">
+  <!-- Main content -->
+  <section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Hola {{ usuario.nombreApellido }}</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" title="Remove" (click)="redireccionarLogin()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <h5>Tu cuenta ha sido activada! A partir de ahora podras usar la aplicacion!</h5>
+        </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<!-- /.content-wrapper -->

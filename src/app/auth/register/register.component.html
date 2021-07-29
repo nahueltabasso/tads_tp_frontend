@@ -90,11 +90,14 @@
                 <!-- INICIO FORMULARIO REGISTRO FIELD FECHANACIMIENTO -->
                 <div class="input-group mb-3">
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="date" class="form-control datetimepicker-input" placeholder="27/01/2020" formControlName="fechaNacimiento" />
+                        <input type="date" [max]="fechaMaximaStr" class="form-control datetimepicker-input" placeholder="27/01/2020" formControlName="fechaNacimiento" />
                     </div>
                 </div>
 
                 <!-- INICIO ERRORES FIELD FECHANACIMIENTO-->
+                <div class="col-xs-12 text-danger">
+                    <p *ngIf="formularioRegistro.get('fechaNacimiento').hasError('fechaInvalida') && (formularioRegistro.get('fechaNacimiento').dirty || formularioRegistro.get('fechaNacimiento').touched)">El usuario no puede tener menos de 13 años</p>
+                </div>
                 <div class="col-xs-12 text-danger">
                     <p *ngIf="formularioRegistro.get('fechaNacimiento').hasError('required') && (formularioRegistro.get('fechaNacimiento').dirty || formularioRegistro.get('fechaNacimiento').touched)">La fecha de nacimiento es requerida</p>
                 </div>
@@ -121,8 +124,7 @@
                 <div class="input-group mb-3">
                     <select class="form-control" formControlName="pais">
                         <option [value]="null" disabled>-- Seleccionar Pais de Origen --</option>
-                        <option [value]="'M'">Argentina</option>
-                        <option [value]="'F'">Brasil</option>
+                        <option [value]="pais" *ngFor="let pais of paises">{{ pais }}</option>
                     </select>
                 </div>
                 

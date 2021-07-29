@@ -1,4 +1,5 @@
 import { FormGroup, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { MIN_LENGTH_PASSWORD } from "../constants";
 
 export const validEqualsPasswords: ValidatorFn = (
     control: FormGroup

@@ -45,12 +45,15 @@
             <!-- FIN FORMULARIO LOGIN FIELD PASSWORD -->
             
             <div class="row">
+                <!-- INICIO FORMULARIO LOGIN FIELD REMEMBER -->
                 <div class="col-8">
                     <div class="icheck-primary">
-                        <input type="checkbox" id="remember" />
+                        <input type="checkbox" id="remember"  formControlName="remember" />
                         <label for="remember"> Recuerdame </label>
                     </div>
                 </div>
+                <!-- FIN FORMULARIO LOGIN FIELD REMEMBER -->
+
                 <!-- /.col -->
                 <div class="col-4">
                     <button type="submit" class="btn btn-primary btn-block" [disabled]="formularioLogin.invalid">Sign In</button>
