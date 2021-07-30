@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequestDTO } from 'src/app/models/request.model';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
+
+declare const gapi: any;
 
 @Component({
   selector: 'app-login',
@@ -14,13 +16,22 @@ export class LoginComponent implements OnInit {
 
   formularioLogin: FormGroup;
   loginRequestDto: LoginRequestDTO = new LoginRequestDTO(); 
+  auth2: any;
 
   constructor(private authService: AuthService,
               private fb: FormBuilder,
-              private router: Router) {}
+              private router: Router,
+              private ngZone: NgZone) {}
 
   ngOnInit(): void {
+    this.renderButton();
     this.createForm();
+    const email = localStorage.getItem('email');
+    // Si el usuario marco la opcion 'Recuerdame' seteamos por defecto el email del usuario
+    if (email != undefined && email != null && email != '') {
+      this.formularioLogin.controls['email'].setValue(email);
+      this.formularioLogin.controls['remember'].setValue(true);
+    }
   }
 
   public createForm() {
@@ -58,4 +69,55 @@ export class LoginComponent implements OnInit {
       Swal.fire('Error!', err.error.msg, 'error');
     });
   }
+
+  public renderButton() {
+    gapi.signin2.render('my-signin2', {
+      'scope': 'profile email',
+      'width': 320,
+      'height': 40,
+      'longtitle': true,
+      'theme': 'red',
+    });
+
+    this.startApp();
+  }
+
+  public startApp() {
+    gapi.load('auth2', () => {
+      this.auth2 = gapi.auth2.init({
+        client_id: '1005407688819-djrnng2c8q7ask6frur93847le44et7v.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+      });
+      this.attachSignin(document.getElementById('my-signin2'));
+    });
+  }
+
+  public attachSignin(element) {
+    this.auth2.attachClickHandler(element, {},
+      (googleUser) => {
+        var token = googleUser.getAuthResponse().id_token;
+        let body = {
+          "token": token
+        }
+        this.authService.googleLogin(body).subscribe((data: any) => {
+          this.authService.saveLocalStorage(data.token, data.usuario);
+          if (data.primerLogin) {
+            // Primera vez que el usuario se loguea en la aplicacion 
+            // Se redirecciona al componente de CompletarPerfil por primera vez
+            this.ngZone.run(() => {
+              this.router.navigateByUrl('/dashboard/completar-perfil');
+              return; 
+            });
+          }
+          // Si el login es exitoso redireccionamos al home
+          this.ngZone.run(() => {
+            this.router.navigateByUrl('/dashboard');
+          });
+        });
+      }, function(error) {
+        alert(JSON.stringify(error, undefined, 2));
+      });
+  }
+
+
 }
