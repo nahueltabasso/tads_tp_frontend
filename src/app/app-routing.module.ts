@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthRoutingModule } from './auth/auth.routing';
 import { PagesRoutingModule } from './pages/pages.routing';
 
+import { AuthGuard } from './guards/auth.guard';
+
 import { NotPageFoundComponent } from './not-page-found/not-page-found.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full'  },
   { path: '', component: NotPageFoundComponent }
 ];
 
