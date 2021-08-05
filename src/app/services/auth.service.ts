@@ -52,6 +52,10 @@ export class AuthService {
     return this.http.post<string>(this.endpointSeguridad + '/google-signin', token);
   }
 
+  getMenu(nombreRol: string): Observable<String> {
+    return this.http.get<String>(this.endpointSeguridad + '/getMenuUsuarioLogueado/' + nombreRol, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  }
+
   validarToken(): Observable<boolean> {
     const token = localStorage.getItem('auth_token') || '';
     return this.http.get(this.endpointSeguridad + '/refresh-token', { headers : { 'Authorization' : token }}).pipe(

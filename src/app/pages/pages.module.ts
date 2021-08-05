@@ -7,25 +7,29 @@ import { SharedModule } from '../shared/shared.module';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PerfilComponent } from './usuario/perfil/perfil.component';
-import { CompletarPerfilComponent } from './completar-perfil/completar-perfil.component';
+import { CompletarPerfilComponent } from './usuarios/completar-perfil/completar-perfil.component';
+import { PerfilUsuarioComponent } from './usuarios/perfil-usuario/perfil-usuario.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     PagesComponent,
     DashboardComponent,
-    PerfilComponent,
     CompletarPerfilComponent,
+    PerfilUsuarioComponent
   ],
   exports: [
     PagesComponent,
     DashboardComponent,
-    PerfilComponent,
+    CompletarPerfilComponent,
+    PerfilUsuarioComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     // authInterceptorProviders,

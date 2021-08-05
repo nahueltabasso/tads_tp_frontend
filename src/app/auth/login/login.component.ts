@@ -2,6 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequestDTO } from 'src/app/models/request.model';
+import { UsuarioResponseDTO } from 'src/app/models/response.model';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
@@ -60,7 +61,7 @@ export class LoginComponent implements OnInit {
       if (data.primerLogin) {
         // Primera vez que el usuario se loguea en la aplicacion 
         // Se redirecciona al componente de CompletarPerfil por primera vez
-        this.router.navigateByUrl('/dashboard/completar-perfil');
+        this.router.navigateByUrl('/dashboard/completar-perfil/' + data.usuario.id);
         return; 
       }
       // Si el login es exitoso redireccionamos al home
@@ -100,9 +101,10 @@ export class LoginComponent implements OnInit {
           "token": token
         }
         this.authService.googleLogin(body).subscribe((data: any) => {
+          let usuario: UsuarioResponseDTO = data.usuario;
           this.authService.saveLocalStorage(data.token, data.usuario);
-          if (data.primerLogin) {
-            // Primera vez que el usuario se loguea en la aplicacion 
+          if (usuario.primerLogin === 1) {
+            // Primera vez que el usuario se loguea en la aplicacion mediante Google SignIn
             // Se redirecciona al componente de CompletarPerfil por primera vez
             this.ngZone.run(() => {
               this.router.navigateByUrl('/dashboard/completar-perfil');
