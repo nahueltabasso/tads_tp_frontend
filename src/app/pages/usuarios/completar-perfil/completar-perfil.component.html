@@ -1,0 +1,203 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <app-title-page [titlePage]="'Completa los Datos de tu Perfil'"></app-title-page>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+        <div class="card">
+            <div class="card-body">
+
+                <!-- INICIO STEPPER -->
+                <mat-horizontal-stepper linear #stepper>
+                    <!-- INICIO PRIMER STEPPER -->
+                    <mat-step [stepControl]="formularioDatosPersonales">
+                        <ng-template matStepLabel>Mis Datos Personales</ng-template>
+                        <h3>Datos Personales</h3>
+                        <hr>
+                        <div class="form-horizontal">
+                            <form class="form-group" [formGroup]="formularioDatosPersonales">
+                                
+                                <div class="row">
+                                    <div class="input-group  mb-3 form-group col-md-6">
+                                        <label class="col-sm-2 control-label">Nombre y Apellido</label>
+                                        <input type="text" class="form-control col-sm-10" placeholder="Nombre Apellido" formControlName="nombreApellido">
+                                        <div class="input-group-prepend control-label" style="height: 38px;">
+                                            <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="input-group  mb-3 form-group col-md-6">
+                                        <label class="col-sm-1 control-label">Email</label>
+                                        <input type="email" class="form-control col-sm-11" placeholder="Email" formControlName="email">
+                                        <div class="input-group-prepend control-label" style="height: 38px;">
+                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        </div>
+                                    </div>
+                                </div>  
+
+                                <div class="row">
+                                    <div class="input-group  mb-3 form-group col-md-4">
+                                        <label class="col-sm-3 control-label">Fecha Nacimiento</label>
+                                        <input type="text" class="form-control col-sm-10" placeholder="Fecha Nacimiento" formControlName="fechaNacimiento">
+                                        <div class="input-group-prepend control-label" style="height: 38px;">
+                                            <span class="input-group-text"><i class="fas fa-calendar-minus"></i></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="input-group  mb-3 form-group col-md-4">
+                                        <label class="col-sm-2 control-label">Genero</label>
+                                        <input type="email" class="form-control col-sm-10" placeholder="Genero" formControlName="genero">
+                                        <div class="input-group-prepend control-label" style="height: 38px;">
+                                            <span *ngIf="usuario.genero === 'M'" class="input-group-text"><i class="fas fa-male"></i></span>
+                                            <span *ngIf="usuario.genero === 'F'" class="input-group-text"><i class="fas fa-female"></i></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group  mb-3 form-group col-md-4">
+                                        <label class="col-sm-2 control-label">Pais</label>
+                                        <input type="email" class="form-control col-sm-10" placeholder="Pais" formControlName="pais">
+                                        <div class="input-group-prepend control-label" style="height: 38px;">
+                                            <span class="input-group-text"><i class="fas fa-flag"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-group  mb-3 form-group col-md-6">
+                                        <label class="col-sm-2 control-label">Situacion Sentimental</label>
+                                        <select class="form-control" formControlName="situacionSentimental">
+                                            <option [value]="null" disabled>-- Selecciona estado sentimental --</option>
+                                            <option [value]="estado" *ngFor="let estado of comboEstadoSentimental">{{ estado }}</option>
+                                        </select>
+                                        <div class="input-group-prepend control-label" style="height: 38px;">
+                                            <span class="input-group-text"><i class="fas fa-heart"></i></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3 form-group col-md-6">
+                                        <label class="col-sm-2 control-label">Telefono</label>
+                                        <input type="text" class="form-control col-sm-10 phone_with_ddd" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                        <div class="input-group-prepend" style="height: 38px;">
+                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-group  mb-3 col-md-12">
+                                        <label class="col-sm-1 control-label">Biografia</label>
+                                        <textarea type="text" class="form-control input-group col-sm-11" formControlName="biografia" placeholder="Biografia" style="height: 38px;"></textarea>
+                                        <div class="input-group-prepend control-label" style="height: 38px;">
+                                            <span class="input-group-text"><i class="fas fa-user-astronaut"></i></span>
+                                        </div>
+                                    </div> 
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-group  mb-3 col-md-12">
+                                        <label class="col-sm-1 control-label">Hobbies</label>
+                                        <textarea type="text" class="form-control input-group col-sm-11" formControlName="hobbies" placeholder="Hobbies" style="height: 38px;"></textarea>
+                                        <div class="input-group-prepend control-label" style="height: 38px;">
+                                            <span class="input-group-text"><i class="fas fa-gamepad"></i></span>
+                                        </div>
+                                    </div> 
+                                </div>
+
+                                <div class="row col-sm-4 float-md-right">
+                                    <button matStepperNext type="button" class="btn btn-block bg-gradient-success">Siguiente</button>
+                                </div>
+                            </form>
+                        </div>
+                    </mat-step>
+                    <!-- FIN PRIMER STEPPER -->
+                
+                    <!-- INICIO SEGUNDO STEPPER -->
+                    <mat-step [stepControl]="formularioFotoPerfil" [optional]="isOptional">
+                        <ng-template matStepLabel>Mi Foto de Perfil</ng-template>
+                        <h2>Foto de Perfil</h2>
+                        <hr>
+                        <div class="form-horizontal">
+                            <form class="form-group" [formGroup]="formularioFotoPerfil">
+                                <div class="row">
+
+                                    <div class="input-group mb-3 col-sm-6">
+                                        <div class="input-group">
+                                            <div class="custom-file col-sm-8">
+                                                <input type="file" class="custom-file-input" id="exampleInputFile" (change)="cambiarImagen($event.target.files[0])">
+                                                <label class="custom-file-label" for="exampleInputFile">{{ imagenSeleccionada ? imagenSeleccionada.name : 'Seleccionar Imagen' }}</label>
+                                            </div>
+                                            <div clasS="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-image"></i></span>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div clasS="img-container text-center">
+                                            <!-- <div class=""> -->
+                                                <img *ngIf="!flagFotoPerfil" src="../../../../assets/img/perfil.jpg" class="img-avatar">
+                                                <img *ngIf="flagFotoPerfil" [src]="imagenUrl" class="img-avatar">
+                                            <!-- </div> -->
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <div class="row">
+                                <div class="col-sm-4 float-md-left">
+                                    <button matStepperPrevious type="button" class="btn btn-block bg-gradient-danger">Anterior</button>
+                                </div>
+
+                                <div class="col-sm-4"></div>
+
+                                <div class="col-sm-4 float-md-right">
+                                    <button matStepperNext type="button" class="btn btn-block bg-gradient-success">Siguiente</button>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-step>
+                    <!-- FIN SEGUNDO STEPPER -->
+                
+                    <!-- INICIO TERCER STEPPER -->
+                    <mat-step>
+                        <ng-template matStepLabel>Fin</ng-template>
+                        <!-- MENSAJE ACLARATORIO -->
+                        <div class="alert alert-success text-center mt-3 animated fadeIn faster">
+                            <h4 class="alert-heading bold">{{ usuario.nombreApellido }} ya haz completado tu perfil! Para continuar haz click en el boton Continuar!</h4>
+                            <p>
+                                <i class="fa fa-exclamation fa-2x"></i>
+                            </p>
+                        </div>    
+                        <div class="row">
+                            <div class="col-sm-4 float-md-left">
+                                <button matStepperPrevious type="button" class="btn btn-block bg-gradient-danger">Anterior</button>
+                            </div>
+
+                            <div class="col-sm-4"></div>
+
+                            <div class="col-sm-4 float-md-right">
+                                <button matStepperNext type="button" class="btn btn-block bg-gradient-success" (click)="completarPerfil()">Confirmar</button>
+                            </div>
+                        </div>
+                    </mat-step>
+                    <!-- FIN TERCER STEPPER -->
+                </mat-horizontal-stepper>
+                <!-- FIN STEPPER -->
+  
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+</div>
+  <!-- /.content-wrapper -->
+
+
+
+

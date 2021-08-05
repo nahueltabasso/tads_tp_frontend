@@ -18,7 +18,7 @@ import { NotPageFoundComponent } from './not-page-found/not-page-found.component
     AppRoutingModule,
     PagesModule,
     AuthModule,
-    RecaptchaV3Module
+    RecaptchaV3Module,
   ],
   providers: [
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: "6LdsSXUbAAAAAANcS50vKoCk3elwXAcLGlrZV03h" }

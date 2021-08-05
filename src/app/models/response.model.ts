@@ -16,6 +16,8 @@ export class UsuarioResponseDTO {
     createAt: Date;
     rol: RolResponseDTO;
     pais: string;
+    primerLogin: number;
+    situacionSentimental: string;
 }
 
 export class RolResponseDTO {
