@@ -1,3 +1,7 @@
+import { environment } from "src/environments/environment";
+
+const url = environment.server_url;
+
 export class UsuarioResponseDTO {
     id: string;
     nombreApellido: string;
@@ -18,6 +22,21 @@ export class UsuarioResponseDTO {
     pais: string;
     primerLogin: number;
     situacionSentimental: string;
+
+    get imagenUrl() {
+        if (this.google) {
+            if (this.srcImagen.includes('https')) {
+                return this.srcImagen;
+            }
+        }
+        console.log(this.srcImagen);
+        if (!this.srcImagen) {
+            console.log("llega")
+            return `${url}/perfiles/no-image.png`;
+        } 
+        console.log("aca")
+        return `${url}/perfiles/${this.srcImagen}`;
+    }
 }
 
 export class RolResponseDTO {

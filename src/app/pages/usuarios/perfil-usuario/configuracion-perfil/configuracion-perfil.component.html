@@ -1,0 +1,117 @@
+<div class="form-horizontal">
+  <form class="form-group" [formGroup]="formularioDatosPersonales" (ngSubmit)="actualizarPerfil()">
+    <div class="row">
+      <div class="col-sm-4">
+        <h1><strong>Foto de perfil</strong></h1>
+        <div class="row">
+          <div class="form-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="exampleInputFile" (change)="cambiarImagen($event.target.files[0])">
+                <label class="custom-file-label" for="exampleInputFile">{{ imagenSeleccionada ? imagenSeleccionada.name : 'Seleccionar Imagen' }}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row text-center my-5">
+          <div class="col-sm-10">
+            <div clasS="img-container">
+              <!-- <div class=""> -->
+                  <img [src]="imagenUrl" class="img-avatar-perfil">
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+  
+      <div class="col-sm-8">
+        <!-- INICIO FORMULARIO DATOS PERSONALES FIELD NOMBREAPELLIDO -->
+        <div class="form-group">
+          <label class="control-label">Nombre y Apellido</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="nombreApellido">
+        </div>
+        <!-- FIN FORMULARIO DATOS PERSONALES FIELD NOMBREAPELLIDO -->
+  
+        <!-- INICIO FORMULARIO DATOS PERSONALES FIELD EMAIL -->
+        <div class="form-group">
+          <label class="control-label">Email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" formControlName="email">
+        </div>
+        <!-- FIN FORMULARIO DATOS PERSONALES FIELD EMAIL -->
+  
+        <!-- INICIO FORMULARIO DATOS PERSONALES FIELD FECHANACIMIENTO -->
+        <div class="form-group">
+          <label class="control-label">Fecha Nacimiento</label>
+          <input type="text" class="form-control" placeholder="27/01/2020" formControlName="fechaNacimiento" />
+        </div>
+        <!-- FIN FORMULARIO DATOS PERSONALES FIELD FECHANACIMIENTO -->
+  
+        <!-- INICIO FORMULARIO DATOS PERSONALES FIELD GENERO -->
+        <div class="form-group">
+          <label class="control-label">Genero</label>
+          <select class="form-control" formControlName="genero">
+            <option [value]="null" disabled>-- Seleccionar Sexo --</option>
+            <option [value]="'M'">Masculino</option>
+            <option [value]="'F'">Femenino</option>
+          </select>
+        </div>
+        <!-- FIN FORMULARIO DATOS PERSONALES FIELD GENERO -->
+
+        <!-- INICIO FORMULARIO DATOS PERSONALES FIELD PAIS -->
+        <div class="form-group">
+          <label class="control-label">Pais</label>
+          <select class="form-control" formControlName="pais">
+            <option [value]="null" disabled>-- Seleccionar Pais de Origen --</option>
+            <option [value]="pais" *ngFor="let pais of paises">{{ pais }}</option>
+          </select>
+        </div>
+        <!-- INICIO ERRORES FIELD PAIS -->
+        <div class="col-xs-12 text-danger">
+            <p *ngIf="formularioDatosPersonales.get('pais').hasError('required') && (formularioDatosPersonales.get('pais').dirty || formularioDatosPersonales.get('pais').touched)">Debe seleccionar un Pais</p>
+        </div>
+        <!-- FIN ERRORES FIELD PAIS -->
+        <!-- FIN FORMULARIO DATOS PERSONALES FIELD PAIS -->
+
+        <!-- INICIO FORMULARIO DATOS PERSONALES FIELD SITUACIONSENTIMENTAL -->
+        <div class="form-group">
+          <label class="control-label">Situacion Sentimental</label>
+          <select class="form-control" formControlName="situacionSentimental">
+            <option [value]="null" disabled>-- Selecciona estado sentimental --</option>
+            <option [value]="estado" *ngFor="let estado of comboEstadoSentimental">{{ estado }}</option>
+          </select>
+        </div>
+        <!-- FIN FORMULARIO DATOS PERSONALES FIELD SITUACIONSENTIMENTAL -->
+
+        <!-- INICIO FORMULARIO DATOS PERSONALES FIELD TELEFONO -->
+        <div class="form-group">
+          <label class="control-label">Telefono</label>
+          <input type="text" class="form-control phone_with_ddd" data-inputmask='"mask": "(999) 999-9999"' data-mask formControlName="telefono">
+        </div>
+        <!-- FIN FORMULARIO DATOS PERSONALES FIELD TELEFONO -->
+  
+        <!-- INICIO FORMULARIO DATOS PERSONALES FIELD BIOGRAFIA -->
+        <div class="form-group">
+          <label class="control-label">Biografia</label>
+          <textarea type="text" class="form-control" formControlName="biografia" placeholder="Biografia"></textarea>
+        </div>
+        <!-- FIN FORMULARIO DATOS PERSONALES FIELD BIOGRAFIA -->
+
+        <!-- INICIO FORMULARIO DATOS PERSONALES FIELD HOBBIES -->
+        <div class="form-group">
+          <label class="control-label">Hobbies</label>
+          <textarea type="text" class="form-control" formControlName="hobbies" placeholder="Hobbies"></textarea>
+        </div>
+        <!-- FIN FORMULARIO DATOS PERSONALES FIELD HOBBIES -->
+      </div>
+    </div>
+
+    <div class="form-group row float-right">
+      <div class="col-sm-12">
+        <button type="submit" class="btn btn-group-lg btn-success btn-block btn-flat"><i class="fa fa-save"></i> Actualizar Perfil</button>
+      </div>
+    </div>
+  </form>
+
+
+
+</div>

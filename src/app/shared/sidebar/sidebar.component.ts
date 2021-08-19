@@ -33,7 +33,8 @@ export class SidebarComponent implements OnInit {
   }
 
   private getUrlImagen() {
-    if (this.usuario.google) {
+    if (this.usuario.google) 
+    {
       if (this.usuario.srcImagen.includes('https')) {
         return this.usuario.srcImagen;
       }
