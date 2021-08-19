@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PublicacionResponseDTO, UsuarioResponseDTO } from 'src/app/models/response.model';
 import { PublicacionService } from 'src/app/services/publicacion.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -13,14 +14,28 @@ export class ActividadUsuarioComponent implements OnInit {
 
   imgUrl: string;
   publicaciones: PublicacionResponseDTO[];
+  usuario: UsuarioResponseDTO = new UsuarioResponseDTO();
+  isUsuarioLogueado: boolean = true;
   @Input('usuarioLogueado') usuarioLogueado: UsuarioResponseDTO;
   
   constructor(private usuarioService: UsuarioService,
-              private publicacionService: PublicacionService) {}
+              private publicacionService: PublicacionService,
+              private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.imgUrl = this.usuarioService.getUrlImagen(this.usuarioLogueado);
-    this.obtenerPublicacionesUsuarioLogueado();
+    this.activatedRoute.paramMap.subscribe(params => {
+      const id: string = params.get('id');
+      if (id !== undefined && id !== null && id !== '') {
+        this.usuarioService.getUsuarioById(id).subscribe((data: any) => {
+          this.usuario = data.usuario;
+          this.isUsuarioLogueado = false;
+          this.imgUrl = this.usuarioService.getUrlImagen(this.usuario);
+        });
+      } else {
+        this.imgUrl = this.usuarioService.getUrlImagen(this.usuarioLogueado);
+        this.obtenerPublicacionesUsuarioLogueado();
+      }
+    });
   }
 
   private obtenerPublicacionesUsuarioLogueado() {

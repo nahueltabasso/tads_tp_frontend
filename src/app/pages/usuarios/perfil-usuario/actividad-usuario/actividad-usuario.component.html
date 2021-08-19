@@ -3,7 +3,8 @@
     <div class="user-block">
         <img class="img-circle img-bordered-sm" [src]="imgUrl" alt="User Image">
         <span class="username">
-            <a href="#">{{ usuarioLogueado.nombreApellido }}</a>
+            <a *ngIf="isUsuarioLogueado" href="#">{{ usuarioLogueado.nombreApellido }}</a>
+            <a *ngIf="!isUsuarioLogueado" href="#">{{ usuarioLogueado.nombreApellido }}</a>
             <!-- <a ng-click="eliminarPublicacion()" class="float-right btn-tool"><button><i class="fas fa-times"></i></button></a> -->
             <button type="button" class="float-right btn-tool" (click)="eliminarPublicacion(publicacion.id)"><i class="fas fa-times"></i></button>
         </span>
@@ -19,7 +20,7 @@
     <!-- /.row -->
 
     <div class="row" style="margin-left: 10px;">
-        <h3>{{ publicacion.titulo | uppercase }}</h3>
+        <h3><span class="text-bold">{{ publicacion.titulo | uppercase }}</span></h3>
     </div>
     <!-- /. row -->
 
