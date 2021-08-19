@@ -7,3 +7,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 200px;
     height: 200px;
 }
+
+.img-avatar-perfil {
+    width: 200px;
+    height: 200px;
+    align-items: center;
+    image-resolution: 1080px;
+    border-image: round;
+}

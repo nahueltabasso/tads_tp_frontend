@@ -16,8 +16,8 @@
                         <hr>
                         <div class="form-horizontal">
                             <form class="form-group" [formGroup]="formularioDatosPersonales">
-                                
                                 <div class="row">
+                                    <!-- INICIO FORMULARIO DATOS PERSONALES FIELD NOMBREAPELLIDO -->
                                     <div class="input-group  mb-3 form-group col-md-6">
                                         <label class="col-sm-2 control-label">Nombre y Apellido</label>
                                         <input type="text" class="form-control col-sm-10" placeholder="Nombre Apellido" formControlName="nombreApellido">
@@ -25,8 +25,9 @@
                                             <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
                                         </div>
                                     </div>
+                                    <!-- FIN FORMULARIO DATOS PERSONALES FIELD NOMBREAPELLIDO -->
 
-
+                                    <!-- INICIO FORMULARIO DATOS PERSONALES FIELD EMAIL -->
                                     <div class="input-group  mb-3 form-group col-md-6">
                                         <label class="col-sm-1 control-label">Email</label>
                                         <input type="email" class="form-control col-sm-11" placeholder="Email" formControlName="email">
@@ -34,9 +35,12 @@
                                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                         </div>
                                     </div>
+                                    <!-- FIN FORMULARIO DATOS PERSONALES FIELD EMAIL -->
+                                    
                                 </div>  
 
                                 <div class="row">
+                                    <!-- INICIO FORMULARIO DATOS PERSONALES FIELD FECHANACIMIENTO -->
                                     <div class="input-group  mb-3 form-group col-md-4">
                                         <label class="col-sm-3 control-label">Fecha Nacimiento</label>
                                         <input type="text" class="form-control col-sm-10" placeholder="Fecha Nacimiento" formControlName="fechaNacimiento">
@@ -44,7 +48,9 @@
                                             <span class="input-group-text"><i class="fas fa-calendar-minus"></i></span>
                                         </div>
                                     </div>
+                                    <!-- FIN FORMULARIO DATOS PERSONALES FIELD FECHANACIMIENTO -->
                                     
+                                    <!-- INICIO FORMULARIO DATOS PERSONALES FIELD GENERO -->
                                     <div class="input-group  mb-3 form-group col-md-4">
                                         <label class="col-sm-2 control-label">Genero</label>
                                         <input type="email" class="form-control col-sm-10" placeholder="Genero" formControlName="genero">
@@ -53,7 +59,9 @@
                                             <span *ngIf="usuario.genero === 'F'" class="input-group-text"><i class="fas fa-female"></i></span>
                                         </div>
                                     </div>
+                                    <!-- FIN FORMULARIO DATOS PERSONALES FIELD GENERO -->
 
+                                    <!-- INICIO FORMULARIO DATOS PERSONALES FIELD PAIS -->
                                     <div class="input-group  mb-3 form-group col-md-4">
                                         <label class="col-sm-2 control-label">Pais</label>
                                         <input type="email" class="form-control col-sm-10" placeholder="Pais" formControlName="pais">
@@ -61,9 +69,11 @@
                                             <span class="input-group-text"><i class="fas fa-flag"></i></span>
                                         </div>
                                     </div>
+                                    <!-- FIN FORMULARIO DATOS PERSONALES FIELD PAIS -->
                                 </div>
 
                                 <div class="row">
+                                    <!-- INICIO FORMULARIO DATOS PERSONALES FIELD SITUACIONSENTIMENTAL -->
                                     <div class="input-group  mb-3 form-group col-md-6">
                                         <label class="col-sm-2 control-label">Situacion Sentimental</label>
                                         <select class="form-control" formControlName="situacionSentimental">
@@ -74,17 +84,21 @@
                                             <span class="input-group-text"><i class="fas fa-heart"></i></span>
                                         </div>
                                     </div>
+                                    <!-- FIN FORMULARIO DATOS PERSONALES FIELD SITUACIONSENTIMENTAL -->
 
+                                    <!-- INICIO FORMULARIO DATOS PERSONALES FIELD TELEFONO -->
                                     <div class="input-group mb-3 form-group col-md-6">
                                         <label class="col-sm-2 control-label">Telefono</label>
-                                        <input type="text" class="form-control col-sm-10 phone_with_ddd" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                        <input type="text" class="form-control col-sm-10 phone_with_ddd" data-inputmask='"mask": "(999) 999-9999"' data-mask formControlName="telefono">
                                         <div class="input-group-prepend" style="height: 38px;">
                                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         </div>
                                     </div>
+                                    <!-- FIN FORMULARIO DATOS PERSONALES FIELD TELEFONO -->
                                 </div>
 
                                 <div class="row">
+                                    <!-- INICIO FORMULARIO DATOS PERSONALES FIELD BIOGRAFIA -->
                                     <div class="input-group  mb-3 col-md-12">
                                         <label class="col-sm-1 control-label">Biografia</label>
                                         <textarea type="text" class="form-control input-group col-sm-11" formControlName="biografia" placeholder="Biografia" style="height: 38px;"></textarea>
@@ -92,9 +106,11 @@
                                             <span class="input-group-text"><i class="fas fa-user-astronaut"></i></span>
                                         </div>
                                     </div> 
+                                    <!-- FIN FORMULARIO DATOS PERSONALES FIELD BIOGRAFIA -->
                                 </div>
 
                                 <div class="row">
+                                    <!-- INICIO FORMULARIO DATOS PERSONALES FIELD HOBBIES -->
                                     <div class="input-group  mb-3 col-md-12">
                                         <label class="col-sm-1 control-label">Hobbies</label>
                                         <textarea type="text" class="form-control input-group col-sm-11" formControlName="hobbies" placeholder="Hobbies" style="height: 38px;"></textarea>
@@ -102,6 +118,7 @@
                                             <span class="input-group-text"><i class="fas fa-gamepad"></i></span>
                                         </div>
                                     </div> 
+                                    <!-- FIN FORMULARIO DATOS PERSONALES FIELD HOBBIES -->
                                 </div>
 
                                 <div class="row col-sm-4 float-md-right">

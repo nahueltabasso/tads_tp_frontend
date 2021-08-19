@@ -47,7 +47,7 @@ export class UsuarioService {
 
       const data = await rta.json();
 
-      if ( data.ok ) {
+      if (data.ok) {
         return data;
       } else {
         console.log(data.msg);

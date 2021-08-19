@@ -83,9 +83,9 @@ export class CompletarPerfilComponent implements OnInit {
     this.usuario.telefono = telefono;
     this.usuario.biografia = biografia;
     this.usuario.hobbies = hobbies;
-    console.log(this.usuario);
     this.usuarioService.actualizarPerfil(this.usuario, this.usuario.id).subscribe((data: any) => {
-      console.log(data);
+      this.usuario = data.usuario;
+      this.authService.usuario = this.usuario;
       this.mostrarMensajeExito('Perfil Completado!', 'El perfil se ha actualizado correctamente!', 'success');
       this.router.navigateByUrl('/dashboard');
     }, (err) => {
