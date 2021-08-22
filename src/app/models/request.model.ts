@@ -17,3 +17,10 @@ export class ResetPasswordDTO {
     newPassword: string;
     resetToken: string;
 }
+
+export class SolicitudAmistadRequestDTO {
+    usuarioEmisor: string;
+    emailEmisor: string;
+    usuarioReceptor: string;
+    emailReceptor: string;
+}

@@ -24,8 +24,8 @@ export class PublicacionService {
     return this.http.post<PublicacionResponseDTO>(this.endpoint + '/publicaciones', formData, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
 
-  getAllByUsuarioLogueado(): Observable<PublicacionResponseDTO[]> {
-    return this.http.get<PublicacionResponseDTO[]>(this.endpoint, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  getAllByUsuario(idUsuario: string): Observable<PublicacionResponseDTO[]> {
+    return this.http.get<PublicacionResponseDTO[]>(this.endpoint + '/getPublicacionesUsuario/' + idUsuario, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
 
   deletePublicacion(id: string): Observable<string> {

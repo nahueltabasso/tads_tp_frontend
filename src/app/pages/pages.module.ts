@@ -15,6 +15,7 @@ import { ActividadTemporalComponent } from './usuarios/perfil-usuario/actividad-
 import { ActividadUsuarioComponent } from './usuarios/perfil-usuario/actividad-usuario/actividad-usuario.component';
 import { PublicacionesListComponent } from './usuarios/publicaciones/publicaciones-list/publicaciones-list.component';
 import { PublicacionesAddComponent } from './usuarios/publicaciones/publicaciones-add/publicaciones-add.component';
+import { SolicitudesPendientesComponent } from './usuarios/solicitudes-pendientes/solicitudes-pendientes.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PublicacionesAddComponent } from './usuarios/publicaciones/publicacione
     ActividadTemporalComponent,
     ActividadUsuarioComponent,
     PublicacionesListComponent,
-    PublicacionesAddComponent
+    PublicacionesAddComponent,
+    SolicitudesPendientesComponent
   ],
   exports: [
     PagesComponent,

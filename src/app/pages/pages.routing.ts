@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompletarPerfilComponent } from './usuarios/completar-perfil/completar-perfil.component';
 import { PerfilUsuarioComponent } from './usuarios/perfil-usuario/perfil-usuario.component';
 import { PublicacionesAddComponent } from './usuarios/publicaciones/publicaciones-add/publicaciones-add.component';
+import { SolicitudesPendientesComponent } from './usuarios/solicitudes-pendientes/solicitudes-pendientes.component';
 
 const routes: Routes = [
     { path: 'dashboard', component: PagesComponent,
@@ -17,7 +18,8 @@ const routes: Routes = [
         { path: 'completar-perfil/:id', component: CompletarPerfilComponent },
         { path: 'mi-perfil', component: PerfilUsuarioComponent },
         { path: 'perfil/:id', component: PerfilUsuarioComponent },
-        { path: 'publicacion/nueva-publicacion', component: PublicacionesAddComponent }
+        { path: 'publicacion/nueva-publicacion', component: PublicacionesAddComponent },
+        { path: 'amigos/solicitudes-pendientes', component: SolicitudesPendientesComponent },
       ]
     },
 ];

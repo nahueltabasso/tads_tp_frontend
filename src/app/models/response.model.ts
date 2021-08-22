@@ -31,10 +31,8 @@ export class UsuarioResponseDTO {
         }
         console.log(this.srcImagen);
         if (!this.srcImagen) {
-            console.log("llega")
             return `${url}/perfiles/no-image.png`;
         } 
-        console.log("aca")
         return `${url}/perfiles/${this.srcImagen}`;
     }
 }
@@ -52,4 +50,13 @@ export class PublicacionResponseDTO {
     srcImagen: string;
     createAt: Date;
     usuario: UsuarioResponseDTO;
+}
+
+export class SolicitudAmistadResponseDTO {
+    id: string;
+    usuarioEmisor: UsuarioResponseDTO;
+    emailEmisor: string;
+    usuarioReceptor: UsuarioResponseDTO;
+    emailReceptor: string;
+    estado: boolean;
 }

@@ -16,6 +16,7 @@ export class ActividadUsuarioComponent implements OnInit {
   publicaciones: PublicacionResponseDTO[];
   usuario: UsuarioResponseDTO = new UsuarioResponseDTO();
   isUsuarioLogueado: boolean = true;
+  flagNoResults: boolean = false;
   @Input('usuarioLogueado') usuarioLogueado: UsuarioResponseDTO;
   
   constructor(private usuarioService: UsuarioService,
@@ -30,18 +31,21 @@ export class ActividadUsuarioComponent implements OnInit {
           this.usuario = data.usuario;
           this.isUsuarioLogueado = false;
           this.imgUrl = this.usuarioService.getUrlImagen(this.usuario);
+          this.obtenerPublicacionesUsuario(this.usuario.id);
         });
       } else {
         this.imgUrl = this.usuarioService.getUrlImagen(this.usuarioLogueado);
-        this.obtenerPublicacionesUsuarioLogueado();
+        this.obtenerPublicacionesUsuario(this.usuarioLogueado.id);
       }
     });
   }
 
-  private obtenerPublicacionesUsuarioLogueado() {
-    this.publicacionService.getAllByUsuarioLogueado().subscribe((data: any) => {
+  private obtenerPublicacionesUsuario(idUsuario: string) {
+    this.publicacionService.getAllByUsuario(idUsuario).subscribe((data: any) => {
       this.publicaciones = data.publicaciones;
-      console.log(this.publicaciones);
+      if (this.publicaciones.length === 0) {
+        this.flagNoResults = true;
+      }
     });
   }
 
