@@ -11,8 +11,8 @@
         <div class="user-block">
             <img class="img-circle img-bordered-sm" [src]="imgUrl" alt="User Image">
             <span class="username">
-                <a *ngIf="isUsuarioLogueado" href="#">{{ usuarioLogueado.nombreApellido }}</a>
-                <a *ngIf="!isUsuarioLogueado" href="#">{{ usuarioLogueado.nombreApellido }}</a>
+                <a *ngIf="isUsuarioLogueado" href="#">{{ usuario.nombreApellido }}</a>
+                <a *ngIf="!isUsuarioLogueado" href="#">{{ usuario.nombreApellido }}</a>
                 <!-- <a ng-click="eliminarPublicacion()" class="float-right btn-tool"><button><i class="fas fa-times"></i></button></a> -->
                 <button *ngIf="isUsuarioLogueado" type="button" class="float-right btn-tool" (click)="eliminarPublicacion(publicacion.id)"><i class="fas fa-times"></i></button>
             </span>

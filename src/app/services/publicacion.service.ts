@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { PublicacionResponseDTO } from '../models/response.model';
 
@@ -10,6 +11,8 @@ import { PublicacionResponseDTO } from '../models/response.model';
 export class PublicacionService {
 
   url: string = environment.server_url + '/file';
+  publicacionesPage = 0;
+  cargando: boolean = false;
   endpoint = environment.server_url + '/publicacion';
 
   constructor(private http: HttpClient) {}
@@ -26,6 +29,20 @@ export class PublicacionService {
 
   getAllByUsuario(idUsuario: string): Observable<PublicacionResponseDTO[]> {
     return this.http.get<PublicacionResponseDTO[]>(this.endpoint + '/getPublicacionesUsuario/' + idUsuario, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  }
+
+  getAllByUsuarioPaginados(idUsuario: string): Observable<PublicacionResponseDTO[]> {
+    if (this.cargando) return;
+    
+    this.cargando = true;
+    return this.http.get<PublicacionResponseDTO[]>(this.endpoint + '/getPublicacionesUsuarioPaginadas/' + idUsuario + '?size=5&page=' + this.publicacionesPage, 
+    { headers: { 'Authorization': localStorage.getItem('auth_token') } })
+      .pipe(
+        tap(() => {
+          this.publicacionesPage += 1;
+          this.cargando = false;
+        })
+      );
   }
 
   deletePublicacion(id: string): Observable<string> {

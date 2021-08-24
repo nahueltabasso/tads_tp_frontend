@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PublicacionResponseDTO, UsuarioResponseDTO } from 'src/app/models/response.model';
 import { PublicacionService } from 'src/app/services/publicacion.service';
@@ -14,10 +14,24 @@ export class ActividadUsuarioComponent implements OnInit {
 
   imgUrl: string;
   publicaciones: PublicacionResponseDTO[];
-  usuario: UsuarioResponseDTO = new UsuarioResponseDTO();
   isUsuarioLogueado: boolean = true;
   flagNoResults: boolean = false;
-  @Input('usuarioLogueado') usuarioLogueado: UsuarioResponseDTO;
+  @Input('usuarioLogueado') usuario: UsuarioResponseDTO;
+
+  // Infinite Scroll - Paginacion
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const position = document.documentElement.scrollTop + 1300;    // Posicion actual del scroll 
+    const maxScrollPosition = document.documentElement.scrollHeight;  // Posicion maxima del scroll
+
+    if (position > maxScrollPosition) {  
+      // Hacer request al servidor
+      if (this.publicacionService.cargando) return;
+      this.publicacionService.getAllByUsuarioPaginados(this.usuario.id).subscribe((data: any) => {
+        this.publicaciones.push(...data.result.docs);
+      }); 
+    }
+  }
   
   constructor(private usuarioService: UsuarioService,
               private publicacionService: PublicacionService,
@@ -34,15 +48,15 @@ export class ActividadUsuarioComponent implements OnInit {
           this.obtenerPublicacionesUsuario(this.usuario.id);
         });
       } else {
-        this.imgUrl = this.usuarioService.getUrlImagen(this.usuarioLogueado);
-        this.obtenerPublicacionesUsuario(this.usuarioLogueado.id);
+        this.imgUrl = this.usuarioService.getUrlImagen(this.usuario);
+        this.obtenerPublicacionesUsuario(this.usuario.id);
       }
     });
   }
 
   private obtenerPublicacionesUsuario(idUsuario: string) {
-    this.publicacionService.getAllByUsuario(idUsuario).subscribe((data: any) => {
-      this.publicaciones = data.publicaciones;
+    this.publicacionService.getAllByUsuarioPaginados(idUsuario).subscribe((data: any) => {
+      this.publicaciones = data.result.docs;
       if (this.publicaciones.length === 0) {
         this.flagNoResults = true;
       }
