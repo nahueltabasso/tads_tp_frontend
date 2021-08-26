@@ -1,0 +1,90 @@
+    <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <app-title-page [titlePage]="'Buscar Usuarios'"></app-title-page>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+        <div class="card">
+            <div class="card-body">
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                <form [formGroup]="formulario">
+                                    <div class="input-group input-group-lg">
+                                        <input type="search" class="form-control form-control-lg" placeholder="Ingresa nombre a buscar" formControlName="search" [(ngModel)]="termino">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-lg btn-default" (click)="search()">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- MENSAJE CARGANDO DATOS -->
+                        <div *ngIf="loading" class="alert alert-info alert-dismissible col-md-8 offset-md-2 my-4 animated fadeIn faster text-center">
+                            <h4 class="alert-heading">Cargando</h4>
+                            <p>
+                                <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+                            </p>
+                            <p class="mb-0">
+                                Espere por favor...
+                            </p>
+                        </div>
+
+                        <!-- MENSAJE NO HAY RESULTADO -->
+                        <div class="alert alert-warning alert-dismissible col-md-8 offset-md-2 my-4" *ngIf="click > 0 && usuariosResult.length === 0 && !loading">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-info"></i> Atencion!</h5>
+                            No se encontraron resultados para {{ termino }}
+                        </div>
+
+                        <div *ngIf="usuariosResult.length > 0">
+                            <div class="row mt-3" *ngFor="let u of usuariosResult">
+                                <div class="col-md-10 offset-md-1">
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <img class="img-fluid img-avatar img-rounded" [src]="getImagen(u)" alt="Photo" style="max-height: 160px;">
+                                                </div>
+                                                <div class="col px-4">
+                                                    <div>
+                                                        <div class="float-right"> {{ currentDate | date: 'short' }} </div>
+                                                        <h3>
+                                                            <!-- REDIRIGE AL PERFIL DEL USUARIO -->
+                                                            <a href="#"  [routerLink]="['/dashboard/perfil', u.id]" *ngIf="usuarioLogueado.id !== u.id">
+                                                                <strong>{{ u.nombreApellido }}</strong>
+                                                            </a>
+
+                                                            <!-- REDIRIGE AL PERFIL DEL USUARIO LOGUEADO -->
+                                                            <a href="#"  routerLink="/dashboard/mi-perfil" *ngIf="usuarioLogueado.id === u.id">
+                                                                <strong>{{ u.nombreApellido }}</strong>
+                                                            </a>
+                                                        </h3>
+                                                        <p class="mb-0">Se unio a la red el {{ u.createAt | date: 'short' }}</p>
+                                                        <div class="text-right">
+                                                            <button  type="button" class="btn btn-primary" (click)="enviarSolicitudDeAmistad(u)"><b>Agregar a Mis Amigos</b></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                   
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+    

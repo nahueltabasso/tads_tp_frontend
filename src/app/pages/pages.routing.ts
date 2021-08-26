@@ -9,6 +9,7 @@ import { CompletarPerfilComponent } from './usuarios/completar-perfil/completar-
 import { PerfilUsuarioComponent } from './usuarios/perfil-usuario/perfil-usuario.component';
 import { PublicacionesAddComponent } from './usuarios/publicaciones/publicaciones-add/publicaciones-add.component';
 import { SolicitudesPendientesComponent } from './usuarios/solicitudes-pendientes/solicitudes-pendientes.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
     { path: 'dashboard', component: PagesComponent,
@@ -20,6 +21,7 @@ const routes: Routes = [
         { path: 'perfil/:id', component: PerfilUsuarioComponent },
         { path: 'publicacion/nueva-publicacion', component: PublicacionesAddComponent },
         { path: 'amigos/solicitudes-pendientes', component: SolicitudesPendientesComponent },
+        { path: 'search', component: SearchComponent },
       ]
     },
 ];

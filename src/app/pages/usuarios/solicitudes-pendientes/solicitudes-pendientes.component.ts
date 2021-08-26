@@ -31,6 +31,7 @@ export class SolicitudesPendientesComponent implements OnInit {
       if (data.ok) {
         Swal.fire('Rechazada!', 'Solicitud de amistad rechazada!', 'info');
         this.solicitudes = this.solicitudes.filter(s => s.id !== id);
+        this.actualizarEstadoResult();
       }
     }, (err) => {
       Swal.fire('Error!', 'Ocurrio un error consulte con el administrador!', 'error');
@@ -40,7 +41,15 @@ export class SolicitudesPendientesComponent implements OnInit {
   public aceptarSolicitud(id: string) {
     this.solicitudService.aceptarSolicitudAmistad(id).subscribe(data => {
       Swal.fire('Aceptada!', 'Ya son amigos!', 'success');
+      this.solicitudes = this.solicitudes.filter(s => s.id !== id);
+      this.actualizarEstadoResult();
     });
+  }
+
+  private actualizarEstadoResult() {
+    if (this.solicitudes.length === 0) {
+      this.result = true;
+    }
   }
 
 }

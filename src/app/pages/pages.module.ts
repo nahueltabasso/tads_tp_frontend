@@ -16,6 +16,7 @@ import { ActividadUsuarioComponent } from './usuarios/perfil-usuario/actividad-u
 import { PublicacionesListComponent } from './usuarios/publicaciones/publicaciones-list/publicaciones-list.component';
 import { PublicacionesAddComponent } from './usuarios/publicaciones/publicaciones-add/publicaciones-add.component';
 import { SolicitudesPendientesComponent } from './usuarios/solicitudes-pendientes/solicitudes-pendientes.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SolicitudesPendientesComponent } from './usuarios/solicitudes-pendiente
     ActividadUsuarioComponent,
     PublicacionesListComponent,
     PublicacionesAddComponent,
-    SolicitudesPendientesComponent
+    SolicitudesPendientesComponent,
+    SearchComponent
   ],
   exports: [
     PagesComponent,
@@ -37,7 +39,8 @@ import { SolicitudesPendientesComponent } from './usuarios/solicitudes-pendiente
     PerfilUsuarioComponent,
     ConfiguracionPerfilComponent,
     ActividadTemporalComponent,
-    ActividadUsuarioComponent
+    ActividadUsuarioComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // ANGULAR MATERIAL
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +22,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatChipsModule } from '@angular/material/chips';
 
+// DEPENDENCIAS
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+
 import { NavbarHeaderComponent } from './navbar-header/navbar-header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -36,6 +40,8 @@ import { TitlePageComponent } from './title-page/title-page.component';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
     MatTableModule,
@@ -52,7 +58,8 @@ import { TitlePageComponent } from './title-page/title-page.component';
     MatDatepickerModule,
     MatIconModule,
     MatStepperModule,
-    MatChipsModule
+    MatChipsModule,
+    AutocompleteLibModule
   ],
   exports: [
     NavbarHeaderComponent,
@@ -74,7 +81,8 @@ import { TitlePageComponent } from './title-page/title-page.component';
     MatDatepickerModule,
     MatIconModule,
     MatStepperModule,
-    MatChipsModule
+    MatChipsModule,
+    AutocompleteLibModule
   ]
 })
 export class SharedModule { }
