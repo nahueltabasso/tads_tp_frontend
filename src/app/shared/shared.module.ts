@@ -22,9 +22,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatChipsModule } from '@angular/material/chips';
 
-// DEPENDENCIAS
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
-
 import { NavbarHeaderComponent } from './navbar-header/navbar-header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -59,7 +56,6 @@ import { TitlePageComponent } from './title-page/title-page.component';
     MatIconModule,
     MatStepperModule,
     MatChipsModule,
-    AutocompleteLibModule
   ],
   exports: [
     NavbarHeaderComponent,
@@ -82,7 +78,6 @@ import { TitlePageComponent } from './title-page/title-page.component';
     MatIconModule,
     MatStepperModule,
     MatChipsModule,
-    AutocompleteLibModule
   ]
 })
 export class SharedModule { }
