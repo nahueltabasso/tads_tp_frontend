@@ -59,4 +59,5 @@ export class SolicitudAmistadResponseDTO {
     usuarioReceptor: UsuarioResponseDTO;
     emailReceptor: string;
     estado: boolean;
+    createAt: any;
 }
