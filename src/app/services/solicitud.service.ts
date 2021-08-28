@@ -30,4 +30,8 @@ export class SolicitudService {
     return this.http.post<SolicitudAmistadResponseDTO>(this.endpoint + '/enviar-solicitud', solicitud, { headers : { 'Authorization' : localStorage.getItem('auth_token') }});
   }
 
+  getIdsAmigosByUsuarioId(idUsuario: string): Observable<Number> {
+    return this.http.get<Number>(this.endpoint + '/getAmigos/' + idUsuario, { headers : { 'Authorization' : localStorage.getItem('auth_token') }});
+  }
+
 }

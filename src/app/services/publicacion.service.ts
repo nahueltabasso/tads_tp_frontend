@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -40,6 +40,19 @@ export class PublicacionService {
       .pipe(
         tap(() => {
           this.publicacionesPage += 1;
+          this.cargando = false;
+        })
+      );
+  }
+
+  getAllAmigosPaginados(idsAmigos: string[], page: number): Observable<PublicacionResponseDTO[]> {
+    if (this.cargando) return;
+    
+    this.cargando = true;
+    return this.http.get<PublicacionResponseDTO[]>(this.endpoint + '/getPublicacionesByAmigos/' + idsAmigos + '?desde=' + page, 
+    { headers: { 'Authorization': localStorage.getItem('auth_token') } })
+      .pipe(
+        tap(() => {
           this.cargando = false;
         })
       );
