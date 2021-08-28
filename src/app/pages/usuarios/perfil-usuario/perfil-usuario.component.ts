@@ -18,6 +18,8 @@ export class PerfilUsuarioComponent implements OnInit {
   imagenUrl: string;
   flagBotonAgregarAmigo: boolean = true;
   titulo: string;
+  totalPublicaciones: number;
+  totalAmigos: number;
 
   constructor(private authService: AuthService,
               private usuarioService: UsuarioService,
@@ -33,6 +35,7 @@ export class PerfilUsuarioComponent implements OnInit {
           this.usuario = data.usuario;
           this.imagenUrl = this.usuarioService.getUrlImagen(this.usuario);
           this.titulo = 'Perfil de ' + this.usuario.nombreApellido;
+          this.getCantidadPublicacionesAndAmigosByUsuario();
         });
       } else {
         // Implica que es el perfil del usuario logueado
@@ -40,7 +43,15 @@ export class PerfilUsuarioComponent implements OnInit {
         this.imagenUrl = this.usuarioService.getUrlImagen(this.usuario);
         this.flagBotonAgregarAmigo = false;
         this.titulo = 'Mi Perfil';
+        this.getCantidadPublicacionesAndAmigosByUsuario();
       } 
+    });
+  }
+
+  private getCantidadPublicacionesAndAmigosByUsuario() {
+    this.usuarioService.getCantidadPublicacionesAndCantidadAmigosSegunUsuario(this.usuario.id).subscribe((data: any) => {
+      this.totalAmigos = data.totalAmigos;
+      this.totalPublicaciones = data.totalPublicaciones
     });
   }
 

@@ -34,6 +34,10 @@ export class UsuarioService {
     return this.http.get<UsuarioResponseDTO[]>(this.endPoint + '/search/' + termino, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
 
+  getCantidadPublicacionesAndCantidadAmigosSegunUsuario(id: string): Observable<any> {
+    return this.http.get<any>(this.endPoint + '/getCantidadPublicacionesAndCantidadAmigos/' + id, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  }
+
   async actualizarFotoPerfil(idUsuario: string, archivo: File) {
     let tipo = 'perfiles';
     try {

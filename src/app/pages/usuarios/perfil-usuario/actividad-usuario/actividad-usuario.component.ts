@@ -68,11 +68,22 @@ export class ActividadUsuarioComponent implements OnInit {
   }
 
   public eliminarPublicacion(id: string) {
-    this.publicacionService.deletePublicacion(id).subscribe(data => {
-      Swal.fire('Eliminada!', 'Publicacion eliminada con exito!', 'success');
-      this.publicaciones = this.publicaciones.filter(p => p.id !== id);
-    }, (err) => {
-      Swal.fire('Error!', `${err.error.msg}`, 'error');
-    })
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: `Seguro que desea esta publicacion?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Si, Eliminar!'
+    }).then((result) => {
+      if (result.value) {
+        this.publicacionService.deletePublicacion(id).subscribe(data => {
+          Swal.fire('Eliminada!', 'Publicacion eliminada con exito!', 'success');
+          this.publicaciones = this.publicaciones.filter(p => p.id !== id);
+        }, (err) => {
+          Swal.fire('Error!', `${err.error.msg}`, 'error');
+        });
+      }
+    });
   }
 }

@@ -19,6 +19,11 @@ export class NavbarHeaderComponent implements OnInit {
   usuariosAutoCompleteControl = new FormControl();
   usuariosAautoCompleteList: UsuarioResponseDTO[] = [];
   usuariosFiltered: Observable<UsuarioResponseDTO[]>;
+  _second = 1000;
+  _minute = this._second * 60;
+  _hour = this._minute * 60;
+  _day = this._hour * 24;
+  currentDate: any;
 
   constructor(private usuarioService: UsuarioService,
               private solicitudService: SolicitudService,
@@ -60,5 +65,6 @@ export class NavbarHeaderComponent implements OnInit {
   }
 
   public calcularDiferenciaEntreCurrentTimeAndCreateAtSolicitud(s: SolicitudAmistadResponseDTO) {
+    
   }
 }
