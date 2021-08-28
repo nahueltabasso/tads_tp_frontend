@@ -48,7 +48,6 @@ export class DashboardComponent implements OnInit {
     this.publicacionService.getAllAmigosPaginados(this.idsAmigosUsuarioLogueado, this.page).subscribe((data: any) => {
       let publicacionesNuevas = data.publicaciones;
       publicacionesNuevas.forEach(p => this.publicaciones.push(p));
-      console.log(this.publicaciones);
       this.totalPublicaciones = data.totalPublicaciones;
       this.ocultarBoton = false;
       this.setFlagNoResults();
