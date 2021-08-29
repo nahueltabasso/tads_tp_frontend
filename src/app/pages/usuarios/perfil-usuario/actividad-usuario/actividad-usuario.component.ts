@@ -21,9 +21,8 @@ export class ActividadUsuarioComponent implements OnInit {
   // Infinite Scroll - Paginacion
   @HostListener('window:scroll', ['$event'])
   onScroll() {
-    const position = document.documentElement.scrollTop + 1300;    // Posicion actual del scroll 
+    const position = document.documentElement.scrollTop + 1100;    // Posicion actual del scroll 
     const maxScrollPosition = document.documentElement.scrollHeight;  // Posicion maxima del scroll
-
     if (position > maxScrollPosition) {  
       // Hacer request al servidor
       if (this.publicacionService.cargando) return;
@@ -84,6 +83,17 @@ export class ActividadUsuarioComponent implements OnInit {
           Swal.fire('Error!', `${err.error.msg}`, 'error');
         });
       }
+    });
+  }
+
+  public mostrarPublicacionWithColorRojo(idPublicacion: string) {
+    let idUsuario = this.usuario.id;
+    this.publicacionService.getIfUsuarioReaccionPublicacion(idPublicacion, idUsuario).subscribe((data: any) => {
+      let valid = data.reaccion;
+      if (valid) {
+        return true;
+      } 
+      return false;
     });
   }
 }

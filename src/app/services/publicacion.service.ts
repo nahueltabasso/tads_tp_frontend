@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { PublicacionResponseDTO } from '../models/response.model';
+import { PublicacionResponseDTO, ReaccionDTO } from '../models/response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,7 @@ export class PublicacionService {
   publicacionesPage = 0;
   cargando: boolean = false;
   endpoint = environment.server_url + '/publicacion';
+  endpointReaccion = environment.server_url + '/reaccion'
 
   constructor(private http: HttpClient) {}
 
@@ -60,6 +61,22 @@ export class PublicacionService {
 
   deletePublicacion(id: string): Observable<string> {
     return this.http.delete<string>(this.endpoint + '/' + id, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  }
+
+  registrarMeGustaPublicacion(idPublicacion: string, idUsuario: string): Observable<ReaccionDTO> {
+    return this.http.post<ReaccionDTO>(this.endpointReaccion + '/' + idPublicacion + '/' + idUsuario, null , { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  }
+
+  getIfUsuarioReaccionPublicacion(idPublicacion: string, idUsuario: string): Observable<boolean> {
+    return this.http.get<boolean>(this.endpointReaccion + '/isUsuarioReaccion/' + idPublicacion + '/' + idUsuario, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  }
+
+  getCantidadMeGustaByPublicacion(idPublicacion: string): Observable<number> {
+    return this.http.get<number>(this.endpointReaccion + '/getCantidadReaccionesByPublicacion/' + idPublicacion, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  }
+
+  borrarMeGusta(idPublicacion: string, idUsuario: string): Observable<boolean> {
+    return this.http.delete<boolean>(this.endpointReaccion + '/' + idPublicacion + '/' + idUsuario, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
 
   getUrlImagen(srcImagen: string) {

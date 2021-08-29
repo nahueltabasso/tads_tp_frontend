@@ -17,6 +17,7 @@ import { PublicacionesListComponent } from './usuarios/publicaciones/publicacion
 import { PublicacionesAddComponent } from './usuarios/publicaciones/publicaciones-add/publicaciones-add.component';
 import { SolicitudesPendientesComponent } from './usuarios/solicitudes-pendientes/solicitudes-pendientes.component';
 import { SearchComponent } from './search/search.component';
+import { LikeComponent } from './usuarios/publicaciones/like/like.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SearchComponent } from './search/search.component';
     PublicacionesListComponent,
     PublicacionesAddComponent,
     SolicitudesPendientesComponent,
-    SearchComponent
+    SearchComponent,
+    LikeComponent
   ],
   exports: [
     PagesComponent,

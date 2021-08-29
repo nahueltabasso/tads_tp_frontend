@@ -67,4 +67,13 @@ export class DashboardComponent implements OnInit {
   public getUrlImagenUsuario(u: UsuarioResponseDTO) {
     return this.usuarioService.getUrlImagen(u);
   }
+  
+  public reaccionarMeGusta(idPublicacion: string) {
+    let idUsuario = this.usuario.id;
+    this.publicacionService.registrarMeGustaPublicacion(idPublicacion, idUsuario).subscribe((data: any) => {
+      if (data.ok) {
+        Swal.fire('Te Gusta', 'Haz reaccionado a la publicacion', 'success');
+      }
+    });
+  }
 }

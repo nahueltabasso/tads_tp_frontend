@@ -61,3 +61,10 @@ export class SolicitudAmistadResponseDTO {
     estado: boolean;
     createAt: any;
 }
+
+export class ReaccionDTO {
+    id: string;
+    usuario: UsuarioResponseDTO;
+    publicacion: PublicacionResponseDTO;
+    createAt: Date;
+}

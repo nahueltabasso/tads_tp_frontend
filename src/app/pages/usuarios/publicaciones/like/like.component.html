@@ -1,0 +1,3 @@
+<i class="far fa-thumbs-up mr-1" (click)="reaccionarMeGusta(publicacion.id)" *ngIf="!mostrarMeGustaRojo"></i> {{ !mostrarMeGustaRojo ? displayText() : '' }}
+
+<i class="far fa-thumbs-up mr-1" style="color: red" *ngIf="mostrarMeGustaRojo" (click)="borrarMeGusta()" title="Ya te gusta"></i> {{ mostrarMeGustaRojo ? displayText() : '' }}

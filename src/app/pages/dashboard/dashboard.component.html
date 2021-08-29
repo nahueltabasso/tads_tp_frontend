@@ -51,7 +51,11 @@
                                     
                                         <p>
                                             <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Compartir</a>
-                                            <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Me gusta</a>
+
+                                            <!-- INVOCAMOS AL COMPONENTE DE LIKE/DISLIKE PUBLICACION -->
+                                            <app-like [publicacion]="publicacion" [usuario]="usuario"></app-like>
+                                            <!-- END INVOCACION AL COMPONENTE DE LIKE/DISLIKE PUBLICACION -->
+
                                             <span class="float-right">
                                             <a href="#" class="link-black text-sm">
                                                 <i class="far fa-comments mr-1"></i> Comentarios (5)
