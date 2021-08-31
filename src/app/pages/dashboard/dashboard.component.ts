@@ -45,13 +45,17 @@ export class DashboardComponent implements OnInit {
   }
 
   public cargarPublicaciones() {
-    this.publicacionService.getAllAmigosPaginados(this.idsAmigosUsuarioLogueado, this.page).subscribe((data: any) => {
-      let publicacionesNuevas = data.publicaciones;
-      publicacionesNuevas.forEach(p => this.publicaciones.push(p));
-      this.totalPublicaciones = data.totalPublicaciones;
-      this.ocultarBoton = false;
-      this.setFlagNoResults();
-    }); 
+    if (this.idsAmigosUsuarioLogueado.length > 0) {
+      this.publicacionService.getAllAmigosPaginados(this.idsAmigosUsuarioLogueado, this.page).subscribe((data: any) => {
+        let publicacionesNuevas = data.publicaciones;
+        publicacionesNuevas.forEach(p => this.publicaciones.push(p));
+        this.totalPublicaciones = data.totalPublicaciones;
+        this.ocultarBoton = false;
+        this.setFlagNoResults();
+      }); 
+    } else {
+      this.flagNoResults = true;
+    }
   }
 
   private setFlagNoResults() {
