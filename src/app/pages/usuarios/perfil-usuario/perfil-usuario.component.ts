@@ -70,6 +70,8 @@ export class PerfilUsuarioComponent implements OnInit {
     });
   }
 
-
+  public actualizarCantidadPublicaciones(event) {
+    this.totalPublicaciones = this.totalPublicaciones - event;
+  }
 
 }

@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PublicacionResponseDTO, UsuarioResponseDTO } from 'src/app/models/response.model';
 import { PublicacionService } from 'src/app/services/publicacion.service';
@@ -17,6 +17,7 @@ export class ActividadUsuarioComponent implements OnInit {
   isUsuarioLogueado: boolean = true;
   flagNoResults: boolean = false;
   @Input('usuarioLogueado') usuario: UsuarioResponseDTO;
+  @Output() restarCantidadPublicaciones: EventEmitter<number>;
 
   // Infinite Scroll - Paginacion
   @HostListener('window:scroll', ['$event'])
@@ -34,9 +35,12 @@ export class ActividadUsuarioComponent implements OnInit {
   
   constructor(private usuarioService: UsuarioService,
               private publicacionService: PublicacionService,
-              private activatedRoute: ActivatedRoute) {}
+              private activatedRoute: ActivatedRoute) {
+    this.restarCantidadPublicaciones = new EventEmitter();
+  }
 
   ngOnInit(): void {
+    this.publicacionService.publicacionesPage = 0;
     this.activatedRoute.paramMap.subscribe(params => {
       const id: string = params.get('id');
       if (id !== undefined && id !== null && id !== '') {
@@ -79,6 +83,8 @@ export class ActividadUsuarioComponent implements OnInit {
         this.publicacionService.deletePublicacion(id).subscribe(data => {
           Swal.fire('Eliminada!', 'Publicacion eliminada con exito!', 'success');
           this.publicaciones = this.publicaciones.filter(p => p.id !== id);
+          // Emitimos la eliminacion de la publicacion para ser recuperada en el componente del Perfil
+          this.restarCantidadPublicaciones.emit(1);
         }, (err) => {
           Swal.fire('Error!', `${err.error.msg}`, 'error');
         });
