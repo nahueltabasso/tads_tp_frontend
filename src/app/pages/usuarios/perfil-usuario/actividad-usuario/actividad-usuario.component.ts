@@ -40,7 +40,7 @@ export class ActividadUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.publicacionService.publicacionesPage = 0;
+    this.publicacionService.publicacionesPage = 1;
     this.activatedRoute.paramMap.subscribe(params => {
       const id: string = params.get('id');
       if (id !== undefined && id !== null && id !== '') {

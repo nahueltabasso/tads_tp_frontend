@@ -11,7 +11,7 @@ import { PublicacionResponseDTO, ReaccionDTO } from '../models/response.model';
 export class PublicacionService {
 
   url: string = environment.server_url + '/file';
-  publicacionesPage = 0;
+  publicacionesPage = 1;
   cargando: boolean = false;
   endpoint = environment.server_url + '/publicacion';
   endpointReaccion = environment.server_url + '/reaccion'
@@ -34,7 +34,6 @@ export class PublicacionService {
 
   getAllByUsuarioPaginados(idUsuario: string): Observable<PublicacionResponseDTO[]> {
     if (this.cargando) return;
-    
     this.cargando = true;
     return this.http.get<PublicacionResponseDTO[]>(this.endpoint + '/getPublicacionesUsuarioPaginadas/' + idUsuario + '?size=5&page=' + this.publicacionesPage, 
     { headers: { 'Authorization': localStorage.getItem('auth_token') } })
