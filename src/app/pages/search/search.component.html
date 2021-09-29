@@ -67,7 +67,7 @@
                                                         </h3>
                                                         <p class="mb-0">Se unio a la red el {{ u.createAt | date: 'short' }}</p>
                                                         <div class="text-right">
-                                                            <button  type="button" class="btn btn-primary" (click)="enviarSolicitudDeAmistad(u)"><b>Agregar a Mis Amigos</b></button>
+                                                            <button *ngIf="usuarioLogueado.id != u.id" type="button" class="btn btn-primary" (click)="enviarSolicitudDeAmistad(u)"><b>Agregar a Mis Amigos</b></button>
                                                         </div>
                                                     </div>
                                                 </div>
