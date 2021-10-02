@@ -18,6 +18,9 @@ import { PublicacionesAddComponent } from './usuarios/publicaciones/publicacione
 import { SolicitudesPendientesComponent } from './usuarios/solicitudes-pendientes/solicitudes-pendientes.component';
 import { SearchComponent } from './search/search.component';
 import { LikeComponent } from './usuarios/publicaciones/like/like.component';
+import { ChatComponent } from './chat/chat.component';
+import { MensajesComponent } from './chat/mensajes/mensajes.component';
+import { ListaUsuariosComponent } from './chat/lista-usuarios/lista-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { LikeComponent } from './usuarios/publicaciones/like/like.component';
     PublicacionesAddComponent,
     SolicitudesPendientesComponent,
     SearchComponent,
-    LikeComponent
+    LikeComponent,
+    ChatComponent,
+    MensajesComponent,
+    ListaUsuariosComponent,
   ],
   exports: [
     PagesComponent,
@@ -42,7 +48,10 @@ import { LikeComponent } from './usuarios/publicaciones/like/like.component';
     ConfiguracionPerfilComponent,
     ActividadTemporalComponent,
     ActividadUsuarioComponent,
-    SearchComponent
+    SearchComponent,
+    ChatComponent,
+    MensajesComponent,
+    ListaUsuariosComponent,
   ],
   imports: [
     CommonModule,

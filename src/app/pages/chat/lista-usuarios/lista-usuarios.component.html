@@ -1,0 +1,32 @@
+<!-- <div class="chat_people">
+    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+    <div class="chat_ib">
+        <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+        <p>Test, which is a new approach to have all solutions 
+        astrology under one roof.</p>
+    </div>
+</div> -->
+
+
+<!-- MENSAJE NO HAY USUARIOS CONECTADOS -->
+<div class="alert alert-info alert-dismissible m-4" *ngIf="flagUsuariosConectadosEmpty">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><i class="icon fas fa-info"></i> Atencion!</h5>
+    Ninguno de tus amigos estan conectados
+</div> 
+
+<!-- INICIO USUARIOS CONECTADOS -->
+<div *ngIf="!flagUsuariosConectadosEmpty">
+    <div class="chat_list" *ngFor="let usuario of usuariosConectados">
+        <div class="chat_people" (click)="seleccionarUsuarioForChat(usuario)">
+            <div class="chat_img"> <img [src]="usuarioService.getUrlImagen(usuario)" alt="sunil"> </div>
+            <div class="chat_ib">
+                <h5>{{ usuario.nombreApellido }} <span class="chat_date">Dec 25</span></h5>
+                <p>Test, which is a new approach to have all solutions 
+                astrology under one roof.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN USUARIOS CONECTADOS -->
+
