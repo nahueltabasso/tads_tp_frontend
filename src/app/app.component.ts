@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { WebSocketService } from './services/web-socket.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +8,8 @@ import { WebSocketService } from './services/web-socket.service';
 export class AppComponent  implements OnInit {
   title = 'tads-client';
 
-  constructor(public webSocketService: WebSocketService) {}
+  constructor() {}
 
   ngOnInit() {
-    console.log(this.webSocketService)
   }
 }

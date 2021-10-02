@@ -10,6 +10,7 @@ import { UsuarioResponseDTO } from 'src/app/models/response.model';
 export class MensajesComponent implements OnInit, OnChanges {
 
   @Input('usuario') usuario: UsuarioResponseDTO = new UsuarioResponseDTO();
+  flagUsuarioSeleccionado: boolean = true;
 
   constructor(private router: Router) {}
 
@@ -23,11 +24,17 @@ export class MensajesComponent implements OnInit, OnChanges {
       change = changes[propName];
     }
     this.usuario = JSON.parse(JSON.stringify(change.currentValue));
+    if (this.usuario !== null && this.usuario !== undefined) {
+      this.flagUsuarioSeleccionado = false;
+    }
+
     this.cargarmensajes();
   }
 
 
- cargarmensajes() {
-  console.log("Prueba")
- }
+  cargarmensajes() {
+    if (this.usuario !== null && this.usuario !== undefined) {
+      console.log("Prueba")
+    }
+  }
 }

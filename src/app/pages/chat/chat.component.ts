@@ -9,7 +9,7 @@ import { MensajesComponent } from './mensajes/mensajes.component';
 })
 export class ChatComponent implements OnInit {
 
-  usuario: UsuarioResponseDTO = new UsuarioResponseDTO();
+  usuario: UsuarioResponseDTO = null;
 
   constructor() {}
 
