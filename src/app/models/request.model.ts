@@ -24,3 +24,10 @@ export class SolicitudAmistadRequestDTO {
     usuarioReceptor: string;
     emailReceptor: string;
 }
+
+export class MensajeChatRequestDTO {
+    id: string;
+    from: string;
+    to: string;
+    message: string;
+}

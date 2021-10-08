@@ -4,43 +4,41 @@
     Selecciona algunos de tus amigos conectados para iniciar el    <i class="fab fa-facebook-messenger"></i>.
 </div> 
 
-<div  *ngIf="!flagUsuarioSeleccionado">
-    <div class="msg_history">
-        <div class="incoming_msg">
-            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-            <div class="received_msg">
-                <div class="received_withd_msg">
-                    <p>Test which is a new approach to have all
-                    solutions</p>
-                    <span class="time_date"> 11:01 AM    |    June 9</span>
+<div *ngIf="!flagUsuarioSeleccionado">
+    <div class="msg_history" id="msg-history-chat" #scroll>
+        <div  *ngFor="let mensaje of mensajesChat">
+            <!-- Inicio Mensajes Entrantes -->
+            <div class="incoming_msg" *ngIf="mensaje.to === usuarioLogueado.id">
+                <div class="incoming_msg_img"> <img [src]="getImagenPerfilUsuarioTo()" alt="sunil"> </div>
+                <div class="received_msg">
+                    <div class="received_withd_msg" id="received-msg">
+                        <p>{{ mensaje.message }}</p>
+                        <!-- <span class="time_date"> 11:01 AM    |    June 9</span> -->
+                        <span class="time_date">{{ getHoraMesFormat(mensaje.createAt) }}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="outgoing_msg">
-            <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                    solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span>
-            </div>
-        </div>
-        <div class="incoming_msg">
-            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-            <div class="received_msg">
-                <div class="received_withd_msg">
-                    <p>Test, which is a new approach to have</p>
-                    <span class="time_date"> 11:01 AM    |    Yesterday</span>
+            <!-- Fin Mensajes Entrantes -->
+
+            <!-- Inicio Mensaje Saliente -->
+            <div class="outgoing_msg" *ngIf="mensaje.to === usuario.id">
+                <div class="sent_msg">
+                    <p>{{ mensaje.message }}</p>
+                    <!-- <span class="time_date"> 11:01 AM    |    June 9</span> -->
+                    <span class="time_date">{{ getHoraMesFormat(mensaje.createAt) }}</span>
                 </div>
             </div>
+            <!-- Inicio Mensaje Saliente -->
+
         </div>
     </div>
     <div class="type_msg">
         <div class="input_msg_write">
-            <input type="text" class="write_msg" placeholder="Type a message" />
-            <button  class="msg_send_btn" type="button"><i class="fa fa-check" aria-hidden="true"></i></button>
+            <form [formGroup]="formulario">
+                <input type="text" class="write_msg" placeholder="Escriba un mensaje" formControlName="mensaje" (keyup.enter)="sendMessage()" />
+                <button  class="msg_send_btn" type="button"><i class="fa fa-check" aria-hidden="true" (click)="sendMessage()"></i></button>
+            </form>
         </div>
     </div>
 </div>
 
-<div>
-    {{ usuario | json }}
-</div>

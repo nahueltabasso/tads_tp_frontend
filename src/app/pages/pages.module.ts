@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import * as moment from 'moment';
 
 // import { authInterceptorProviders } from '../helpers/auth.interceptors';
 
@@ -21,6 +22,8 @@ import { LikeComponent } from './usuarios/publicaciones/like/like.component';
 import { ChatComponent } from './chat/chat.component';
 import { MensajesComponent } from './chat/mensajes/mensajes.component';
 import { ListaUsuariosComponent } from './chat/lista-usuarios/lista-usuarios.component';
+
+moment.locale('es');
 
 @NgModule({
   declarations: [

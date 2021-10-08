@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioResponseDTO } from 'src/app/models/response.model';
-import { MensajesComponent } from './mensajes/mensajes.component';
 
 @Component({
   selector: 'app-chat',

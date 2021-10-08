@@ -22,6 +22,7 @@ export class UsuarioResponseDTO {
     pais: string;
     primerLogin: number;
     situacionSentimental: string;
+    online: boolean;
 
     get imagenUrl() {
         if (this.google) {
@@ -66,5 +67,13 @@ export class ReaccionDTO {
     id: string;
     usuario: UsuarioResponseDTO;
     publicacion: PublicacionResponseDTO;
+    createAt: Date;
+}
+
+export class MensajeChatResponseDTO {
+    id: string;
+    from: UsuarioResponseDTO;
+    to: UsuarioResponseDTO;
+    mmessage: string;
     createAt: Date;
 }

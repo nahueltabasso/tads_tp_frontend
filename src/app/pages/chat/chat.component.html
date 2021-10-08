@@ -26,12 +26,11 @@
                             <div class="inbox_chat">
                                 <!-- <app-lista-usuarios (usuarioSeleccionado)="usuario = $event"></app-lista-usuarios> -->
                                 <app-lista-usuarios (usuarioSeleccionado)="actualizarUsuarioSeleccionadoForChat($event)"></app-lista-usuarios>
-                                <div> {{ usuario | json }}</div>
                             </div>
                         </div>
 
 
-                        <div class="mesgs">
+                        <div class="mesgs" #scroll>
                             <app-mensajes [usuario]="usuario"></app-mensajes>
                         </div>
                     </div>

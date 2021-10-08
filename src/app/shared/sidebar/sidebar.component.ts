@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioResponseDTO } from 'src/app/models/response.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { WebSocketService } from 'src/app/services/web-socket.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,6 +18,7 @@ export class SidebarComponent implements OnInit {
   url: string = environment.server_url + '/file';
 
   constructor(private authService: AuthService,
+              public webSocketService: WebSocketService,
               private router: Router) {}
 
   ngOnInit(): void {
@@ -29,6 +31,7 @@ export class SidebarComponent implements OnInit {
 
   public logout() {
     this.authService.logout();
+    this.webSocketService.disconnect();
     this.router.navigateByUrl('/login');
   }
 
