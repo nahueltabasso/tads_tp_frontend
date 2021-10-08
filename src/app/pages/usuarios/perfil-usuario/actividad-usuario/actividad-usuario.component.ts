@@ -18,6 +18,7 @@ export class ActividadUsuarioComponent implements OnInit {
   flagNoResults: boolean = false;
   @Input('usuarioLogueado') usuario: UsuarioResponseDTO;
   @Output() restarCantidadPublicaciones: EventEmitter<number>;
+  flagLoading: boolean = false;
 
   // Infinite Scroll - Paginacion
   @HostListener('window:scroll', ['$event'])
@@ -34,7 +35,7 @@ export class ActividadUsuarioComponent implements OnInit {
   }
   
   constructor(private usuarioService: UsuarioService,
-              private publicacionService: PublicacionService,
+              public publicacionService: PublicacionService,
               private activatedRoute: ActivatedRoute) {
     this.restarCantidadPublicaciones = new EventEmitter();
   }
@@ -58,11 +59,13 @@ export class ActividadUsuarioComponent implements OnInit {
   }
 
   private obtenerPublicacionesUsuario(idUsuario: string) {
+    this.flagLoading = true;
     this.publicacionService.getAllByUsuarioPaginados(idUsuario).subscribe((data: any) => {
       this.publicaciones = data.result.docs;
       if (this.publicaciones.length === 0) {
         this.flagNoResults = true;
       }
+      this.flagLoading = false;
     });
   }
 

@@ -6,6 +6,7 @@
 </div>
 
 <div *ngIf="!flagNoResults">
+
     <!-- Post -->
     <div class="post" *ngFor="let publicacion of publicaciones">
         <div class="user-block">
@@ -53,4 +54,7 @@
         <input class="form-control form-control-sm" type="text" placeholder="Escribe un comentario">
     </div>
     <!-- /.post -->
+    <div class="text-center" *ngIf="flagLoading || publicacionService.cargando">
+        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+    </div>
 </div>

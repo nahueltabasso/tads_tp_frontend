@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   publicaciones: PublicacionResponseDTO[] = [];
   flagNoResults: boolean = false;
   ocultarBoton: boolean = true;
+  flagLoading: boolean = false;
 
   constructor(private solicitudService: SolicitudService,
               private authService: AuthService,
@@ -46,11 +47,13 @@ export class DashboardComponent implements OnInit {
 
   public cargarPublicaciones() {
     if (this.idsAmigosUsuarioLogueado.length > 0) {
+      this.flagLoading = true;
       this.publicacionService.getAllAmigosPaginados(this.idsAmigosUsuarioLogueado, this.page).subscribe((data: any) => {
         let publicacionesNuevas = data.publicaciones;
         publicacionesNuevas.forEach(p => this.publicaciones.push(p));
         this.totalPublicaciones = data.totalPublicaciones;
         this.ocultarBoton = false;
+        this.flagLoading = false;
         this.setFlagNoResults();
       }); 
     } else {
