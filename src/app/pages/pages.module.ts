@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +18,7 @@ import { PublicacionesAddComponent } from './usuarios/publicaciones/publicacione
 import { SolicitudesPendientesComponent } from './usuarios/solicitudes-pendientes/solicitudes-pendientes.component';
 import { SearchComponent } from './search/search.component';
 import { LikeComponent } from './usuarios/publicaciones/like/like.component';
+import { PublicacionAddMultipleComponent } from './usuarios/publicaciones/publicacion-add-multiple/publicacion-add-multiple.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LikeComponent } from './usuarios/publicaciones/like/like.component';
     PublicacionesAddComponent,
     SolicitudesPendientesComponent,
     SearchComponent,
-    LikeComponent
+    LikeComponent,
+    PublicacionAddMultipleComponent
   ],
   exports: [
     PagesComponent,
@@ -53,6 +55,7 @@ import { LikeComponent } from './usuarios/publicaciones/like/like.component';
   ],
   providers: [
     // authInterceptorProviders,
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class PagesModule { }
