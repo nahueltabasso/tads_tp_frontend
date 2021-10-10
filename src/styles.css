@@ -109,3 +109,8 @@ body{
   .example-chip-list {
     width: 100%;
   }
+
+  .img-post {
+    height: 300px;
+    width: 300px;
+  }
