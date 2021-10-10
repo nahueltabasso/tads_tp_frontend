@@ -19,6 +19,7 @@ import { SolicitudesPendientesComponent } from './usuarios/solicitudes-pendiente
 import { SearchComponent } from './search/search.component';
 import { LikeComponent } from './usuarios/publicaciones/like/like.component';
 import { PublicacionAddMultipleComponent } from './usuarios/publicaciones/publicacion-add-multiple/publicacion-add-multiple.component';
+import { AmigosListComponent } from './usuarios/amigos-list/amigos-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PublicacionAddMultipleComponent } from './usuarios/publicaciones/public
     SolicitudesPendientesComponent,
     SearchComponent,
     LikeComponent,
-    PublicacionAddMultipleComponent
+    PublicacionAddMultipleComponent,
+    AmigosListComponent
   ],
   exports: [
     PagesComponent,
