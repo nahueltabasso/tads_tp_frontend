@@ -11,6 +11,7 @@ import { PublicacionesAddComponent } from './usuarios/publicaciones/publicacione
 import { SolicitudesPendientesComponent } from './usuarios/solicitudes-pendientes/solicitudes-pendientes.component';
 import { SearchComponent } from './search/search.component';
 import { ChatComponent } from './chat/chat.component';
+import { AmigosListComponent } from './usuarios/amigos-list/amigos-list.component';
 
 const routes: Routes = [
     { path: 'dashboard', component: PagesComponent,
@@ -24,6 +25,7 @@ const routes: Routes = [
         { path: 'amigos/solicitudes-pendientes', component: SolicitudesPendientesComponent },
         { path: 'search', component: SearchComponent },
         { path: 'chat', component: ChatComponent },
+        { path: 'mis-amigos', component: AmigosListComponent }
       ]
     },
 ];

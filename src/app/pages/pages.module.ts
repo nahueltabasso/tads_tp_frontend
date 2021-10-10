@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +22,8 @@ import { LikeComponent } from './usuarios/publicaciones/like/like.component';
 import { ChatComponent } from './chat/chat.component';
 import { MensajesComponent } from './chat/mensajes/mensajes.component';
 import { ListaUsuariosComponent } from './chat/lista-usuarios/lista-usuarios.component';
+import { PublicacionAddMultipleComponent } from './usuarios/publicaciones/publicacion-add-multiple/publicacion-add-multiple.component';
+import { AmigosListComponent } from './usuarios/amigos-list/amigos-list.component';
 
 moment.locale('es');
 
@@ -42,6 +44,8 @@ moment.locale('es');
     ChatComponent,
     MensajesComponent,
     ListaUsuariosComponent,
+    PublicacionAddMultipleComponent,
+    AmigosListComponent
   ],
   exports: [
     PagesComponent,
@@ -65,6 +69,7 @@ moment.locale('es');
   ],
   providers: [
     // authInterceptorProviders,
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class PagesModule { }
