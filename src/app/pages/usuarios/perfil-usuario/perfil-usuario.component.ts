@@ -74,4 +74,8 @@ export class PerfilUsuarioComponent implements OnInit {
     this.totalPublicaciones = this.totalPublicaciones - event;
   }
 
+  public sumarCantidadPublicaciones(event) {
+    this.totalPublicaciones = this.totalPublicaciones + event;
+  }
+
 }
