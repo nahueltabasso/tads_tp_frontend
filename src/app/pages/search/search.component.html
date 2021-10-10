@@ -44,33 +44,34 @@
 
                         <div *ngIf="usuariosResult.length > 0">
                             <div class="row mt-3" *ngFor="let u of usuariosResult">
-                                <div class="col-md-10 offset-md-1">
-                                    <div class="list-group">
-                                        <div class="list-group-item">
+                                <div class="col-sm-2"></div>
+                                <div class="col-10 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                                    <div class="card bg-light d-flex flex-fill">
+                                        <div class="card-body pt-0">
                                             <div class="row">
-                                                <div class="col-auto">
-                                                    <img class="img-fluid img-avatar img-rounded" [src]="getImagen(u)" alt="Photo" style="max-height: 160px;">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><b>{{ u.nombreApellido }}</b></h2>
+                                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-flag"></i></span> Pais: {{ u.pais ? u.pais : 'No especifica' }}</li>
+                                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Telefono #: + {{ u.telefono ? u.telefono : 'No especifica' }}</li>
+                                                    </ul>
                                                 </div>
-                                                <div class="col px-4">
-                                                    <div>
-                                                        <div class="float-right"> {{ currentDate | date: 'short' }} </div>
-                                                        <h3>
-                                                            <!-- REDIRIGE AL PERFIL DEL USUARIO -->
-                                                            <a href="#"  [routerLink]="['/dashboard/perfil', u.id]" *ngIf="usuarioLogueado.id !== u.id">
-                                                                <strong>{{ u.nombreApellido }}</strong>
-                                                            </a>
-
-                                                            <!-- REDIRIGE AL PERFIL DEL USUARIO LOGUEADO -->
-                                                            <a href="#"  routerLink="/dashboard/mi-perfil" *ngIf="usuarioLogueado.id === u.id">
-                                                                <strong>{{ u.nombreApellido }}</strong>
-                                                            </a>
-                                                        </h3>
-                                                        <p class="mb-0">Se unio a la red el {{ u.createAt | date: 'short' }}</p>
-                                                        <div class="text-right">
-                                                            <button *ngIf="usuarioLogueado.id != u.id" type="button" class="btn btn-primary" (click)="enviarSolicitudDeAmistad(u)"><b>Agregar a Mis Amigos</b></button>
-                                                        </div>
-                                                    </div>
+                                                <div class="col-5 text-center">
+                                                    <img  [src]="getImagen(u)" alt="user-avatar" class="img-circle img-fluid">
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="#" class="btn btn-sm bg-teal mx-2">
+                                                    <i class="fas fa-comments"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-primary" *ngIf="u.id !== usuarioLogueado.id"  [routerLink]="['/dashboard/perfil', u.id]">
+                                                    <i class="fas fa-user"></i> Ver Perfil
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-primary" *ngIf="u.id === usuarioLogueado.id" routerLink="/dashboard/mi-perfil">
+                                                    <i class="fas fa-user"></i> Ver Perfil
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -88,3 +89,5 @@
 </div>
 <!-- /.content-wrapper -->
     
+
+
