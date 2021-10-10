@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   flagNoResults: boolean = false;
   ocultarBoton: boolean = true;
   flagLoading: boolean = false;
+  imgUrl: string;
 
   constructor(private solicitudService: SolicitudService,
               private authService: AuthService,
@@ -29,6 +30,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario = this.authService.usuario;
+    this.imgUrl = this.usuarioService.getUrlImagen(this.usuario);
     this.solicitudService.getIdsAmigosByUsuarioId(this.usuario.id).subscribe((data: any) => {
       this.idsAmigosUsuarioLogueado = data.idsAmigos;
       this.cargarPublicaciones();
@@ -82,5 +84,10 @@ export class DashboardComponent implements OnInit {
         Swal.fire('Te Gusta', 'Haz reaccionado a la publicacion', 'success');
       }
     });
+  }
+
+  public agregarNuevaPublicacion(event) {
+    this.publicaciones.unshift(event);
+    this.totalPublicaciones++;
   }
 }
