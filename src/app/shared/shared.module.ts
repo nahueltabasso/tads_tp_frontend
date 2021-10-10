@@ -26,13 +26,15 @@ import { NavbarHeaderComponent } from './navbar-header/navbar-header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { TitlePageComponent } from './title-page/title-page.component';
+import { SlideshowComponent } from './slideshow/slideshow.component';
 
 @NgModule({
   declarations: [
     NavbarHeaderComponent,
     SidebarComponent,
     FooterComponent,
-    TitlePageComponent
+    TitlePageComponent,
+    SlideshowComponent
   ],
   imports: [
     CommonModule,
@@ -62,6 +64,7 @@ import { TitlePageComponent } from './title-page/title-page.component';
     SidebarComponent,
     FooterComponent,
     TitlePageComponent,
+    SlideshowComponent,
     MatPaginatorModule,
     MatTableModule,
     MatInputModule,

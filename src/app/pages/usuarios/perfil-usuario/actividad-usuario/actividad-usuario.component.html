@@ -50,8 +50,8 @@
         </div>
         <!-- /.user-block -->
         <div class="row mb-3">
-            <div class="col-sm-12">
-                <img class="img-fluid" [src]="getImagenPublicacion(publicacion.srcImagen)" alt="Photo">
+            <div class="col-sm-12" *ngIf="publicacion.srcImagen.length > 0">
+                <img class="img-fluid" [src]="getImagenPublicacion(publicacion.srcImagen[0])" alt="Photo">
             </div>
             <!-- /.col -->
         </div>
@@ -87,3 +87,6 @@
         <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
     </div>
 </div>
+
+
+
