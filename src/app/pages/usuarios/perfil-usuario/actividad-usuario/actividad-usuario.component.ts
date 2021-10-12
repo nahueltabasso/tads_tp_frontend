@@ -18,6 +18,7 @@ export class ActividadUsuarioComponent implements OnInit {
   flagNoResults: boolean = false;
   @Input('usuarioLogueado') usuario: UsuarioResponseDTO;
   @Output() restarCantidadPublicaciones: EventEmitter<number>;
+  @Output() sumarCantidadPublicacion: EventEmitter<number>;
   flagLoading: boolean = false;
 
   // Infinite Scroll - Paginacion
@@ -38,6 +39,7 @@ export class ActividadUsuarioComponent implements OnInit {
               public publicacionService: PublicacionService,
               private activatedRoute: ActivatedRoute) {
     this.restarCantidadPublicaciones = new EventEmitter();
+    this.sumarCantidadPublicacion = new EventEmitter();
   }
 
   ngOnInit(): void {
@@ -104,5 +106,10 @@ export class ActividadUsuarioComponent implements OnInit {
       } 
       return false;
     });
+  }
+
+  public actualizarActividadUsuario(event) {
+    this.publicaciones.unshift(event);
+    this.sumarCantidadPublicacion.emit(1);
   }
 }

@@ -100,7 +100,7 @@
                               <div class="tab-content">
                                 <div class="active tab-pane" id="activity">
                                   <!-- Post -->
-                                  <app-actividad-usuario [usuarioLogueado]="usuario" (restarCantidadPublicaciones)="actualizarCantidadPublicaciones($event)"></app-actividad-usuario>
+                                  <app-actividad-usuario [usuarioLogueado]="usuario" (restarCantidadPublicaciones)="actualizarCantidadPublicaciones($event)" (sumarCantidadPublicacion)="sumarCantidadPublicaciones($event)"></app-actividad-usuario>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="timeline">

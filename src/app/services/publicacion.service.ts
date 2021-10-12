@@ -28,6 +28,21 @@ export class PublicacionService {
     return this.http.post<PublicacionResponseDTO>(this.endpoint + '/publicaciones', formData, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
 
+  registrarPublicacionWithMultipleFiles(publicacion: PublicacionResponseDTO, archivos: File[]): Observable<PublicacionResponseDTO> {
+    const formData = new FormData();
+    // formData.append('image', archivos);
+    const size = archivos.length;
+    for (let i = 0; i < size; i++) {
+      formData.append('image', archivos[i]);
+    }
+
+    formData.append('titulo', publicacion.titulo);
+    formData.append('descripcion', publicacion.descripcion);
+    formData.append('usuario', publicacion.usuario.id);
+
+    return this.http.post<PublicacionResponseDTO>(this.endpoint + '/multiple-files/publicaciones', formData, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  }
+
   getAllByUsuario(idUsuario: string): Observable<PublicacionResponseDTO[]> {
     return this.http.get<PublicacionResponseDTO[]>(this.endpoint + '/getPublicacionesUsuario/' + idUsuario, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
