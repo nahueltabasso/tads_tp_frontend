@@ -17,7 +17,7 @@
     <!-- Post -->
     <div class="post" *ngFor="let publicacion of publicaciones">
         <div class="user-block">
-            <img class="img-circle img-bordered-sm img-post" [src]="imgUrl" alt="User Image">
+            <img class="img-circle img-bordered-sm" [src]="imgUrl" alt="User Image">
             <span class="username">
                 <a *ngIf="isUsuarioLogueado" routerLink="/dashboard/mi-perfil">{{ usuario.nombreApellido }}</a>
                 <a *ngIf="!isUsuarioLogueado" [routerLink]="['/dashboard/perfil', usuario.id]">{{ usuario.nombreApellido }}</a>
@@ -29,7 +29,7 @@
         <!-- /.user-block -->
         <div class="row mb-3">
             <div class="col-sm-12" *ngIf="publicacion.srcImagen.length > 0">
-                <img class="img-fluid" [src]="getImagenPublicacion(publicacion.srcImagen[0])" alt="Photo">
+                <img class="img-fluid img-center img-rounded img-responsive" [src]="getImagenPublicacion(publicacion.srcImagen[0])" alt="Photo">
             </div>
             <!-- /.col -->
         </div>
