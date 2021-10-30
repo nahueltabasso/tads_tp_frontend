@@ -22,6 +22,7 @@ export class MensajesComponent implements OnInit, OnChanges {
   mensajeNuevo: MensajeChatRequestDTO = new MensajeChatRequestDTO();
   formulario: FormGroup
   @ViewChild('scroll') myScrollContainer: ElementRef;
+  flagMostrarEmojis: boolean = false;
 
   constructor(public webSocketService: WebSocketService,
               private authService: AuthService,
@@ -84,11 +85,22 @@ export class MensajesComponent implements OnInit, OnChanges {
     // Resetear el valor del campo
     this.formulario.controls['mensaje'].setValue('');
     this.mensajeNuevo = new MensajeChatRequestDTO();
+    this.flagMostrarEmojis = false;
   }
 
   public getHoraMesFormat(fecha: Date) {
     const hoyMes = moment(fecha);
     return hoyMes.format('HH:mm a | MMMM Do');
-    
+  }
+
+  public mostrarEmojis() {
+    console.log("Click");
+    this.flagMostrarEmojis = !this.flagMostrarEmojis;
+    console.log(this.flagMostrarEmojis);
+  }
+
+  public addEmoji(event) {
+    let data = this.formulario.get('mensaje');
+    data.patchValue(data.value + event.emoji.native);
   }
 }

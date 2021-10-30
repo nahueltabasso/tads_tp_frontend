@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import * as moment from 'moment';
+import { AngularEmojisModule } from 'angular-emojis';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 // import { authInterceptorProviders } from '../helpers/auth.interceptors';
 
@@ -66,6 +68,8 @@ moment.locale('es');
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularEmojisModule,
+    PickerModule
   ],
   providers: [
     // authInterceptorProviders,

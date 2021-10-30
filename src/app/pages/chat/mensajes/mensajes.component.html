@@ -32,15 +32,22 @@
 
         </div>
     </div>
+
+
     <div class="type_msg">
+
         <div class="input_msg_write">
+
             <form [formGroup]="formulario">
 
                 <input type="text" class="write_msg" placeholder="Escriba un mensaje" formControlName="mensaje" (keyup.enter)="sendMessage()" />
-                <button  class="msg_emoji_btn" type="button"><i class="fa fa-icons" aria-hidden="true" (click)="sendMessage()"></i></button>
-
+                <angular-emojis class="msg_emoji_btn" (click)="mostrarEmojis()" type="button"></angular-emojis>
                 <button  class="msg_send_btn" type="button"><i class="fa fa-check" aria-hidden="true" (click)="sendMessage()"></i></button>
+
+                <emoji-mart *ngIf="flagMostrarEmojis" title="Elige tu emoji..." emoji="point_up" (emojiClick)="addEmoji($event)"></emoji-mart>
+
             </form>
+
         </div>
     </div>
 </div>

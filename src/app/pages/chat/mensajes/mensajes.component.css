@@ -131,7 +131,6 @@ img{ max-width:100%;}
 }
 
 .msg_emoji_btn {
-  background: #05728f none repeat scroll 0 0;
   border: medium none;
   border-radius: 50%;
   color: #fff;
@@ -139,8 +138,8 @@ img{ max-width:100%;}
   font-size: 17px;
   height: 33px;
   position: absolute;
-  right: 35px;
-  top: 11px;
+  right: 40px;
+  top: 18px;
   width: 33px;
 }
 
