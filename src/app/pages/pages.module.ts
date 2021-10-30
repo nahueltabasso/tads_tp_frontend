@@ -65,7 +65,7 @@ moment.locale('es');
     RouterModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     // authInterceptorProviders,
