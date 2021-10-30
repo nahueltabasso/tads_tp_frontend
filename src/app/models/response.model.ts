@@ -49,6 +49,8 @@ export class PublicacionResponseDTO {
     titulo: string;
     descripcion: string;
     srcImagen: string[];
+    srcImagenWeb: string[];
+    srcImagenMobile: string[];
     createAt: Date;
     usuario: UsuarioResponseDTO;
 }

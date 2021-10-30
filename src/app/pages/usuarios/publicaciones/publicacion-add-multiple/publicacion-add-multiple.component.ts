@@ -81,7 +81,6 @@ export class PublicacionAddMultipleComponent implements OnInit {
     if (this.files !== undefined && this.files.length === 1) {
       this.registrarPublicacionSingleFile();
     } else {
-      console.log("entra");
       this.registrarPublicacionMultipleFiles();
     }
   }
