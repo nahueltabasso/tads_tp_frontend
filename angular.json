@@ -29,7 +29,7 @@
               "node_modules/admin-lte/plugins/fontawesome-free/css/all.css",
               "node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.css",
               "node_modules/admin-lte/dist/css/adminlte.css",
-              "node_modules/swiper/swiper-bundle.css",
+              "node_modules/swiper/swiper-bundle.min.css",
               "node_modules/@ctrl/ngx-emoji-mart/picker.css"
             ],
             "scripts": [

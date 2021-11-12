@@ -3,18 +3,17 @@
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
-      <div class="swiper-slide">
-        <img src="../../../assets/img/photo1.png" class="img-avatar" />
+      <div class="swiper-slide" *ngFor="let image of srcImages" [ngStyle]="{
+        'background-size': 'cover',
+        'background-image': 'url(image)'}">
+        <!-- <img [src]="image" class="img-fluid img-center img-rounded img-responsive" /> -->
       </div>
-      ...
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>
   
     <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev" (click)="sliderPrevious()"></div>
+    <div class="swiper-button-next" (click)="sliderNext()"></div>
   
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
 </div>

@@ -23,4 +23,14 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
       loop: true,
     });
   }
+
+  public sliderNext() {
+    console.log(this.mySwiper);
+    this.mySwiper.slideNext();
+  }
+
+  public sliderPrevious() {
+    this.mySwiper.slidePrev();
+  }
+
 }
