@@ -78,7 +78,7 @@ export class ConfiguracionPerfilComponent implements OnInit {
   }
 
   public obtenerPaisesApi(): Observable<any> {
-    const url = 'https://restcountries.eu/rest/v1/all';
+    const url = 'https://restcountries.com/v3.1/all';
     let headers: HttpHeaders = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', '*/*');
@@ -129,9 +129,10 @@ export class ConfiguracionPerfilComponent implements OnInit {
   public completaArrayPaises(data: any) {
     const size = data.length;
     for (let i = 0; i < size; i++) {
-      const nombrePais = data[i].name;
+      const nombrePais = data[i].translations.spa.common;
       this.paises.push(nombrePais);
     }
+    this.paises.sort((p1, p2) => p1.localeCompare(p2));
   }
 
 }
