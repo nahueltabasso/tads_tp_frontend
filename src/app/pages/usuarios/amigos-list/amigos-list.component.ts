@@ -25,6 +25,7 @@ export class AmigosListComponent implements OnInit {
       this.amigos = data.amigos;
       if (this.amigos.length === 0) {
         this.flagNoResults = true;
+        this.flagLoading = false;
         return;
       }
       this.flagNoResults = false;
