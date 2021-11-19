@@ -23,6 +23,7 @@ export class ListaUsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.webSocketService.setUpSocketConnection();
     // this.usuarioService.getAll().subscribe((data: any) => {
     // });
     this.webSocketService.getUsuariosConectados().subscribe((data: any) => {
