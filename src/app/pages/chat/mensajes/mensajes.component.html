@@ -1,11 +1,10 @@
-<!-- MENSAJE NO HAY USUARIOS CONECTADOS -->
 <div class="alert alert-info alert-dismissible m-4" *ngIf="flagUsuarioSeleccionado">
     <h5><i class="icon fas fa-info"></i> Atencion!</h5>
     Selecciona algunos de tus amigos conectados para iniciar el    <i class="fab fa-facebook-messenger"></i>.
 </div> 
 
 <div *ngIf="!flagUsuarioSeleccionado">
-    <div class="msg_history" id="msg-history-chat" #scroll>
+    <div class="msg_history" id="msg-history-chat" #window [scrollTop]="scrollTop">
         <div  *ngFor="let mensaje of mensajesChat">
             <!-- Inicio Mensajes Entrantes -->
             <div class="incoming_msg" *ngIf="mensaje.to === usuarioLogueado.id">

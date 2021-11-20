@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
 import { MensajeChatRequestDTO } from 'src/app/models/request.model';
@@ -13,7 +13,7 @@ import { WebSocketService } from 'src/app/services/web-socket.service';
   templateUrl: './mensajes.component.html',
   styleUrls: ['./mensajes.component.css']
 })
-export class MensajesComponent implements OnInit, OnChanges {
+export class MensajesComponent implements OnInit, OnChanges, AfterViewChecked, AfterViewInit {
 
   @Input('usuario') usuario: UsuarioResponseDTO = new UsuarioResponseDTO();
   flagUsuarioSeleccionado: boolean = true;
@@ -21,14 +21,16 @@ export class MensajesComponent implements OnInit, OnChanges {
   mensajesChat: MensajeChatResponseDTO[] = [];
   mensajeNuevo: MensajeChatRequestDTO = new MensajeChatRequestDTO();
   formulario: FormGroup
-  @ViewChild('scroll') myScrollContainer: ElementRef;
+  @ViewChild('window') myScrollContainer: ElementRef;
   flagMostrarEmojis: boolean = false;
+  scrollTop: number = null;
 
   constructor(public webSocketService: WebSocketService,
               private authService: AuthService,
               private usuarioService: UsuarioService,
               private mensajeChatService: MensajeChatService,
-              private fb: FormBuilder) {}
+              private fb: FormBuilder,
+              private cdRef: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.usuarioLogueado = this.authService.usuario;
@@ -47,9 +49,18 @@ export class MensajesComponent implements OnInit, OnChanges {
     if (this.usuario !== null && this.usuario !== undefined) {
       this.flagUsuarioSeleccionado = false;
     }
-    // this.scroll.nativeElement.scrollTop = this.scroll.nativeElement.scrollHeight;
-    // console.log(this.scroll);
     this.cargarmensajes();
+  }
+
+  ngAfterViewChecked() {
+    if (this.myScrollContainer !== undefined && this.myScrollContainer !== null) {
+      this.scrollTop = this.myScrollContainer.nativeElement.scrollHeight
+    }
+    this.cdRef.detectChanges();
+  }
+
+  ngAfterViewInit() {
+    this.cdRef.detectChanges();
   }
 
   public getImagenPerfilUsuarioTo() {
@@ -94,9 +105,7 @@ export class MensajesComponent implements OnInit, OnChanges {
   }
 
   public mostrarEmojis() {
-    console.log("Click");
     this.flagMostrarEmojis = !this.flagMostrarEmojis;
-    console.log(this.flagMostrarEmojis);
   }
 
   public addEmoji(event) {
@@ -104,3 +113,5 @@ export class MensajesComponent implements OnInit, OnChanges {
     data.patchValue(data.value + event.emoji.native);
   }
 }
+
+
