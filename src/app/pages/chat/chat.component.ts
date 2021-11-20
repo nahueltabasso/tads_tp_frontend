@@ -13,6 +13,7 @@ export class ChatComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    
   }
 
   actualizarUsuarioSeleccionadoForChat(event) {

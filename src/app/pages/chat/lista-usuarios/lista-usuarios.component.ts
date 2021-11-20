@@ -23,16 +23,10 @@ export class ListaUsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.webSocketService.setUpSocketConnection();
-    // this.usuarioService.getAll().subscribe((data: any) => {
-    // });
-    this.webSocketService.getUsuariosConectados().subscribe((data: any) => {
-      this.usuariosConectados = data;
-      this.usuariosActivosObs = data;
-      if (this.usuariosConectados.length === 0) {
-        this.flagUsuariosConectadosEmpty = true;
-      }
-    });
+    this.usuariosConectados = this.webSocketService.amigosOnline;
+    if (this.usuariosConectados.length === 0) {
+      this.flagUsuariosConectadosEmpty = true;
+    }
   }
 
   public seleccionarUsuarioForChat(usuario: UsuarioResponseDTO) {

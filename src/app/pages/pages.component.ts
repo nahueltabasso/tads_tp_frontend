@@ -16,7 +16,7 @@ export class PagesComponent implements OnInit, OnDestroy {
               private authService: AuthService) {}
 
   ngOnInit(): void {
-    // this.webSocketService.setUpSocketConnection();
+    this.webSocketService.setUpSocketConnection();
   }
 
   ngOnDestroy() {
