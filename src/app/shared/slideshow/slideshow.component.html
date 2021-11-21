@@ -1,13 +1,14 @@
 <!-- Slider main container -->
-<div class="swiper">
+<div class="swiper-container">
     <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper text-center">
       <!-- Slides -->
-      <div class="swiper-slide" *ngFor="let image of srcImages" [ngStyle]="{
-        'background-size': 'cover',
-        'background-image': 'url(image)'}">
-        <!-- <img [src]="image" class="img-fluid img-center img-rounded img-responsive" /> -->
-      </div>
+      <img *ngFor="let image of srcImages" [src]="image" class="swiper-slide text-center" />
+      <!-- <img  src="../../../assets/img/avatar04.png" class="swiper-slide">
+      <img  src="../../../assets/img/avatar2.png" class="swiper-slide" />
+      <img  src="../../../assets/img/avatar5.png" class="swiper-slide" /> -->
+
+
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>

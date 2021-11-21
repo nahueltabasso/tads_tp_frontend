@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PublicacionService } from 'src/app/services/publicacion.service';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import Swiper from 'swiper';
 
 @Component({
@@ -12,7 +11,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
   @Input('srcImages') srcImages: String[];
   public mySwiper: Swiper;
 
-  constructor(private publicacionService: PublicacionService) {}
+  constructor(private cdfRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     console.log(this.srcImages);
@@ -20,7 +19,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.mySwiper = new Swiper('.swiper-container', {
-      loop: true,
+      loop: false,
     });
   }
 
