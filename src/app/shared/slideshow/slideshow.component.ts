@@ -1,26 +1,18 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PublicacionService } from 'src/app/services/publicacion.service';
-import Swiper from 'swiper';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-slideshow',
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.css']
 })
-export class SlideshowComponent implements OnInit, AfterViewInit {
+export class SlideshowComponent implements OnInit {
 
   @Input('srcImages') srcImages: String[];
-  public mySwiper: Swiper;
 
-  constructor(private publicacionService: PublicacionService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    console.log(this.srcImages);
+    console.log(this.srcImages)
   }
 
-  ngAfterViewInit() {
-    this.mySwiper = new Swiper('.swiper-container', {
-      loop: true,
-    });
-  }
 }

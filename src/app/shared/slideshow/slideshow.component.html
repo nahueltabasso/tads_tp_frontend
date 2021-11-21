@@ -1,20 +1,7 @@
-<!-- Slider main container -->
-<div class="swiper">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <!-- Slides -->
-      <div class="swiper-slide">
-        <img src="../../../assets/img/photo1.png" class="img-avatar" />
-      </div>
-      ...
+<ngb-carousel *ngIf="srcImages">
+  <ng-template ngbSlide *ngFor="let imagen of srcImages">
+    <div class="picsum-img-wrapper">
+      <img [src]="imagen" alt="Random first slide" class="img-center">
     </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
-  
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-  
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
-</div>
+  </ng-template>
+</ngb-carousel>
