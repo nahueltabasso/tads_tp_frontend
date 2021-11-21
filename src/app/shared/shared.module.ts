@@ -21,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatChipsModule } from '@angular/material/chips';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NavbarHeaderComponent } from './navbar-header/navbar-header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -58,6 +59,7 @@ import { SlideshowComponent } from './slideshow/slideshow.component';
     MatIconModule,
     MatStepperModule,
     MatChipsModule,
+    NgbModule
   ],
   exports: [
     NavbarHeaderComponent,
@@ -81,6 +83,7 @@ import { SlideshowComponent } from './slideshow/slideshow.component';
     MatIconModule,
     MatStepperModule,
     MatChipsModule,
+    NgbModule
   ]
 })
 export class SharedModule { }

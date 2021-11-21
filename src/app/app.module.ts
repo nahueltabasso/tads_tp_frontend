@@ -22,7 +22,7 @@ import { NotPageFoundComponent } from './not-page-found/not-page-found.component
     PagesModule,
     AuthModule,
     RecaptchaV3Module,
-    PickerModule
+    PickerModule,
   ],
   providers: [
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: "6LdsSXUbAAAAAANcS50vKoCk3elwXAcLGlrZV03h" }

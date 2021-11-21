@@ -8,6 +8,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 200px;
 }
 
+.img-post {
+    width: 350px;
+    height: 400px;
+}
+
 .img-avatar-perfil {
     width: 200px;
     height: 200px;
