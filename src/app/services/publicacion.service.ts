@@ -25,7 +25,7 @@ export class PublicacionService {
     formData.append('descripcion', publicacion.descripcion);
     formData.append('usuario', publicacion.usuario.id);
 
-    return this.http.post<PublicacionResponseDTO>(this.endpoint + '/publicaciones', formData, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+    return this.http.post<PublicacionResponseDTO>(this.endpoint + '/cloudinary/publicaciones', formData, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
 
   registrarPublicacionWithMultipleFiles(publicacion: PublicacionResponseDTO, archivos: File[]): Observable<PublicacionResponseDTO> {
@@ -40,7 +40,7 @@ export class PublicacionService {
     formData.append('descripcion', publicacion.descripcion);
     formData.append('usuario', publicacion.usuario.id);
 
-    return this.http.post<PublicacionResponseDTO>(this.endpoint + '/multiple-files/publicaciones', formData, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+    return this.http.post<PublicacionResponseDTO>(this.endpoint + '/cloudinary-multiple/publicaciones', formData, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
 
   getAllByUsuario(idUsuario: string): Observable<PublicacionResponseDTO[]> {
