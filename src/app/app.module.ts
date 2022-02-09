@@ -8,13 +8,11 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 import { AppComponent } from './app.component';
-import { NotPageFoundComponent } from './not-page-found/not-page-found.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NotPageFoundComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

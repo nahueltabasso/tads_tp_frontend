@@ -1,0 +1,67 @@
+
+
+
+<div class="wrapper">
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+      <img
+        class="animation__wobble"
+        src="assets/img/AdminLTELogo.png"
+        alt="AdminLTELogo"
+        height="60"
+        width="60"
+      />
+    </div>
+  
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- Navbar-->
+    <app-navbar-header></app-navbar-header>
+  
+    <div class="content-wrapper">
+        
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>404 Error Page</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#" routerLink="/dashboard">Inicio</a></li>
+                            <li class="breadcrumb-item active">404 Error Page</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+            
+        <section class="content">
+            <div class="error-page">
+                <h2 class="headline text-warning"> 404</h2>
+                <div class="error-content">
+                    <h3><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Esta pagina no existe.</h3>
+                    <p>
+                    No hemos podido encontrar la pagina que estas buscando
+                    <a href="#" routerLink="/dashboard">Regresar al dashboard</a> o intente buscar informacion sobre el error.
+                    </p>
+                    <form class="search-form">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Search">
+                            <div class="input-group-append">
+                                <button type="submit" name="submit" class="btn btn-warning"><i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+  </div>
+  <!-- /.content-wrapper -->
+  
+  <!-- Start Main Footer -->
+  <app-footer></app-footer>
+  <!-- End Main Footer -->

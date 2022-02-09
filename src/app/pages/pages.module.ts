@@ -26,6 +26,7 @@ import { MensajesComponent } from './chat/mensajes/mensajes.component';
 import { ListaUsuariosComponent } from './chat/lista-usuarios/lista-usuarios.component';
 import { PublicacionAddMultipleComponent } from './usuarios/publicaciones/publicacion-add-multiple/publicacion-add-multiple.component';
 import { AmigosListComponent } from './usuarios/amigos-list/amigos-list.component';
+import { NotPageFoundComponent } from './not-page-found/not-page-found.component';
 
 moment.locale('es');
 
@@ -47,7 +48,8 @@ moment.locale('es');
     MensajesComponent,
     ListaUsuariosComponent,
     PublicacionAddMultipleComponent,
-    AmigosListComponent
+    AmigosListComponent,
+    NotPageFoundComponent
   ],
   exports: [
     PagesComponent,
@@ -61,6 +63,7 @@ moment.locale('es');
     ChatComponent,
     MensajesComponent,
     ListaUsuariosComponent,
+    NotPageFoundComponent
   ],
   imports: [
     CommonModule,
