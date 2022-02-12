@@ -26,6 +26,7 @@ import { MensajesComponent } from './chat/mensajes/mensajes.component';
 import { ListaUsuariosComponent } from './chat/lista-usuarios/lista-usuarios.component';
 import { PublicacionAddMultipleComponent } from './usuarios/publicaciones/publicacion-add-multiple/publicacion-add-multiple.component';
 import { AmigosListComponent } from './usuarios/amigos-list/amigos-list.component';
+import { ComentariosComponent } from './usuarios/publicaciones/comentarios/comentarios.component';
 
 moment.locale('es');
 
@@ -47,7 +48,8 @@ moment.locale('es');
     MensajesComponent,
     ListaUsuariosComponent,
     PublicacionAddMultipleComponent,
-    AmigosListComponent
+    AmigosListComponent,
+    ComentariosComponent
   ],
   exports: [
     PagesComponent,
