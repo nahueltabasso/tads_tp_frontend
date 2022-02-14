@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SolicitudAmistadRequestDTO } from 'src/app/models/request.model';
 import { UsuarioResponseDTO } from 'src/app/models/response.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -24,7 +24,8 @@ export class PerfilUsuarioComponent implements OnInit {
   constructor(private authService: AuthService,
               private usuarioService: UsuarioService,
               private solicitudService: SolicitudService,
-              private activatedRoute: ActivatedRoute) {}
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -36,6 +37,9 @@ export class PerfilUsuarioComponent implements OnInit {
           this.imagenUrl = this.usuarioService.getUrlImagen(this.usuario);
           this.titulo = 'Perfil de ' + this.usuario.nombreApellido;
           this.getCantidadPublicacionesAndAmigosByUsuario();
+        }, (err) => {
+          console.error(err);
+          this.router.navigateByUrl('/not-found');
         });
       } else {
         // Implica que es el perfil del usuario logueado
