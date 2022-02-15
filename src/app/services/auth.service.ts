@@ -88,6 +88,10 @@ export class AuthService {
     return localStorage.getItem('auth_token');
   }
 
+  getRole() {
+    return this.usuario.rol.nombreRol;
+  }
+
   logout() {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('usuario');

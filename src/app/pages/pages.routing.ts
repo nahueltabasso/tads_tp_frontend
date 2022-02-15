@@ -13,6 +13,8 @@ import { SearchComponent } from './search/search.component';
 import { ChatComponent } from './chat/chat.component';
 import { AmigosListComponent } from './usuarios/amigos-list/amigos-list.component';
 import { NotPageFoundComponent } from './not-page-found/not-page-found.component';
+import { UsuariosMantenedorComponent } from './mantenedores/usuarios-mantenedor/usuarios-mantenedor.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
     { path: 'dashboard', component: PagesComponent,
@@ -27,7 +29,10 @@ const routes: Routes = [
         { path: 'search', component: SearchComponent },
         { path: 'chat', component: ChatComponent },
         { path: 'mis-amigos', component: AmigosListComponent },
-        { path: 'not-found', component: NotPageFoundComponent }
+        { path: 'not-found', component: NotPageFoundComponent },
+        
+        // Mantenedores
+        { path: 'mantenedor-usuarios', component: UsuariosMantenedorComponent, canActivate: [AdminGuard] }
       ]
     },
 ];
