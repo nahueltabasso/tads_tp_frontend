@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { PublicacionResponseDTO, ReaccionDTO } from '../models/response.model';
+import { ComentarioRequestDTO } from '../models/request.model';
+import { PublicacionResponseDTO, ReaccionDTO, ComentarioResponseDTO } from '../models/response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class PublicacionService {
   publicacionesPage = 1;
   cargando: boolean = false;
   endpoint = environment.server_url + '/publicacion';
-  endpointReaccion = environment.server_url + '/reaccion'
+  endpointReaccion = environment.server_url + '/reaccion';
+  endpointComentario = environment.server_url + '/comentario';
 
   constructor(private http: HttpClient) {}
 
@@ -95,5 +97,17 @@ export class PublicacionService {
 
   getUrlImagen(srcImagen: string) {
     return `${this.url}/publicaciones/${srcImagen}`;
+  }
+
+  getIfUsuarioComentarioPublicacion(idPublicacion: string, idUsuario: string): Observable<boolean> {
+    return this.http.get<boolean>(this.endpointComentario + '/isUsuarioComentario/' + idPublicacion + '/' + idUsuario, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  }
+
+  getCantidadComentariosByPublicacion(idPublicacion: string): Observable<number> {
+    return this.http.get<number>(this.endpointComentario + '/getCantidadComentariosByPublicacion/' + idPublicacion, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  }
+
+  registrarComentarioPublicacion(comentarioRequestDTO: ComentarioRequestDTO): Observable<ComentarioResponseDTO> {
+    return this.http.post<ComentarioResponseDTO>(this.endpointComentario, comentarioRequestDTO , { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
 }

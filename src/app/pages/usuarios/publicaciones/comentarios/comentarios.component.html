@@ -1,1 +1,20 @@
-<p>comentarios works!</p>
+<span class="float-right">
+    <a href="#" class="link-black text-sm">
+        <i class="far fa-comments mr-1"></i> {{displayText()}} <!--Comentarios (5)-->
+    </a>
+    </span>
+
+
+
+<form [formGroup]="formulario">
+    <div class="input-group input-group-sm">
+        <!--<input type="text" class="form-control form-control-sm" placeholder="Escribe un comentario" formControlName="comentario" [(ngModel)]="comentario" (keyup.enter)="comentar()">-->
+        <input class="form-control form-control-sm" type="text" placeholder="Escribe un comentario" formControlName="comentario" [(ngModel)]="comentario" (keyup.enter)="comentar()">
+        <div class="input-group-append">
+            <button type="button" class="btn btn-lg btn-default" (click)="comentar()">
+                <i class="fa fa-comment"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
