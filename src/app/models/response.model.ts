@@ -79,3 +79,11 @@ export class MensajeChatResponseDTO {
     mmessage: string;
     createAt: Date;
 }
+
+export class ComentarioResponseDTO {
+    id: string;
+    usuario: UsuarioResponseDTO;
+    publicacion: PublicacionResponseDTO;
+    comentario: string;
+    createAt: Date;
+}

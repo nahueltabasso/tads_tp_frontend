@@ -31,3 +31,10 @@ export class MensajeChatRequestDTO {
     to: string;
     message: string;
 }
+
+export class ComentarioRequestDTO {
+    id: string;
+    usuario: string;
+    publicacion: string;
+    comentario: string;
+}
