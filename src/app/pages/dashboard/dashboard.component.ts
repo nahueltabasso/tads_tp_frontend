@@ -1,10 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PublicacionResponseDTO, UsuarioResponseDTO } from 'src/app/models/response.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicacionService } from 'src/app/services/publicacion.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
+import { PublicacionesViewComponent } from '../usuarios/publicaciones/publicaciones-view/publicaciones-view.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +28,8 @@ export class DashboardComponent implements OnInit {
   constructor(private solicitudService: SolicitudService,
               private authService: AuthService,
               private publicacionService: PublicacionService,
-              private usuarioService: UsuarioService) {}
+              private usuarioService: UsuarioService,
+              public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.usuario = this.authService.usuario;
@@ -90,4 +93,16 @@ export class DashboardComponent implements OnInit {
     this.publicaciones.unshift(event);
     this.totalPublicaciones++;
   }
+
+  public view(publicacion: PublicacionResponseDTO) {
+    const dialogRef = this.dialog.open(PublicacionesViewComponent, {
+      data: { publicacion: publicacion,
+              usuario: this.usuario }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 }

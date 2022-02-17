@@ -13,6 +13,7 @@
                     No hay actividad de tus amigos
                 </div> 
 
+
                 <div class="row tab-content">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-6">
@@ -33,7 +34,9 @@
                                         <!-- /.user-block -->
                                         <div class="row mb-3">
                                             <div class="col-sm-12">
-                                                <app-slideshow [srcImages]="publicacion.srcImagenWeb"></app-slideshow>
+                                                <div (click)="view(publicacion)">
+                                                    <app-slideshow [srcImages]="publicacion.srcImagenWeb"></app-slideshow>
+                                                </div>
                                             </div>
                                             <!-- /.col -->
                                         </div>
@@ -48,9 +51,7 @@
                                             <h3>{{ publicacion.descripcion }}</h3>
                                         </div>
                                         <!-- /. row -->
-                                    
                                         <p>
-                                            <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Compartir</a>
 
                                             <!-- INVOCAMOS AL COMPONENTE DE LIKE/DISLIKE PUBLICACION -->
                                             <app-like [publicacion]="publicacion" [usuario]="usuario"></app-like>

@@ -1,0 +1,61 @@
+<h1 mat-dialog-title>
+  <div class="post">
+    <div class="user-block">
+      <img class="img-circle img-bordered-sm" [src]="getUrlImagenUsuario(publicacion.usuario)" alt="User Image">
+      <span class="username">
+          <a href="#">{{ publicacion.usuario.nombreApellido }}</a>
+          <!-- <a *ngIf="!isUsuarioLogueado" href="#">{{ usuario.nombreApellido }}</a> -->
+          <!-- <a ng-click="eliminarPublicacion()" class="float-right btn-tool"><button><i class="fas fa-times"></i></button></a> -->
+      </span>
+      <span class="description">Subido el {{ publicacion.createAt | date:'dd/MM/yyyy' }}</span>
+    </div>
+  
+  </div>
+</h1>
+<div mat-dialog-content>
+  <!-- Post -->
+  <div class="post" style="border-block-end-width: inital;">
+
+    <!-- /.user-block -->
+    <div class="row mb-3">
+        <div class="col-sm-7">
+          <app-slideshow [srcImages]="publicacion.srcImagenWeb"></app-slideshow>
+        </div>
+        <!-- /.col -->
+
+        <div class="col-sm-5" aling="right">
+          <!-- COMENTARIOS YA HECHOS -->
+          <input class="form-control form-control-sm" type="text" placeholder="Escribe un comentario">
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row" style="margin-left: 10px;">
+        <h3><span class="text-bold">{{ publicacion.titulo | uppercase }}</span></h3>
+    </div>
+    <!-- /. row -->
+
+    <div class="row" style="margin-left: 10px; margin-top: -10px;">
+        <h3>{{ publicacion.descripcion }}</h3>
+    </div>
+    <!-- /. row -->
+
+      <!-- INVOCAMOS AL COMPONENTE DE LIKE/DISLIKE PUBLICACION -->
+      <app-like [publicacion]="publicacion" [usuario]="usuario"></app-like>
+      <!-- END INVOCACION AL COMPONENTE DE LIKE/DISLIKE PUBLICACION -->
+
+      <span class="float-right">
+      <a href="#" class="link-black text-sm">
+          <i class="far fa-comments mr-1"></i> Comentarios (5)
+      </a>
+      </span>
+
+    <!-- <input class="form-control form-control-sm" type="text" placeholder="Escribe un comentario"> -->
+
+  </div>
+  <!-- /.post -->
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+</div>

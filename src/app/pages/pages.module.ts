@@ -29,6 +29,7 @@ import { AmigosListComponent } from './usuarios/amigos-list/amigos-list.componen
 import { ComentariosComponent } from './usuarios/publicaciones/comentarios/comentarios.component';
 import { NotPageFoundComponent } from './not-page-found/not-page-found.component';
 import { UsuariosMantenedorComponent } from './mantenedores/usuarios-mantenedor/usuarios-mantenedor.component';
+import { PublicacionesViewComponent } from './usuarios/publicaciones/publicaciones-view/publicaciones-view.component';
 
 moment.locale('es');
 
@@ -53,7 +54,8 @@ moment.locale('es');
     AmigosListComponent,
     UsuariosMantenedorComponent,
     ComentariosComponent,
-    NotPageFoundComponent
+    NotPageFoundComponent,
+    PublicacionesViewComponent
   ],
   exports: [
     PagesComponent,
@@ -69,6 +71,9 @@ moment.locale('es');
     ListaUsuariosComponent,
     NotPageFoundComponent,
     UsuariosMantenedorComponent
+  ],
+  entryComponents: [
+    PublicacionesViewComponent
   ],
   imports: [
     CommonModule,
