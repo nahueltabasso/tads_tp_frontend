@@ -110,4 +110,8 @@ export class PublicacionService {
   registrarComentarioPublicacion(comentarioRequestDTO: ComentarioRequestDTO): Observable<ComentarioResponseDTO> {
     return this.http.post<ComentarioResponseDTO>(this.endpointComentario, comentarioRequestDTO , { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
+
+  getComentariosPaginadosByPublicacion(idPublicacion: string, page: number): Observable<ComentarioResponseDTO[]> {
+    return this.http.get<ComentarioResponseDTO[]>(this.endpointComentario + '/getComentariosByPublicacion/' + idPublicacion + '?desde=' + page, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
+  }
 }
