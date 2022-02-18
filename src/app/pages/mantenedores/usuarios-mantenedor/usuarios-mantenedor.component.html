@@ -1,1 +1,75 @@
-<h1>MANTENEDOR DE USUARIOS</h1>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <app-title-page [titlePage]="'Administrar usuarios'"></app-title-page>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+        <div class="card">
+            <div class="card-body">
+                <!-- MENSAJE NO HAY RESULTADO -->
+                <div class="alert alert-info alert-dismissible" *ngIf="flagNoResults">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-info"></i> Atencion!</h5>
+                    No hay usuarios para administrar!
+                </div> 
+
+                <div class="text-center" *ngIf="flagLoading">
+                    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                </div>
+
+                <div *ngIf="!flagNoResults">
+
+                    <table class="table table-striped projects">
+                        <thead>
+                            <tr>
+                                <th style="width: 1%">#</th>
+                                <th style="width: 20%">Nombre y Apellido</th>
+                                <th style="width: 20%">Foto de Perfil</th>
+                                <th>Email</th>
+                                <th style="width: 30%;">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let a of usuarios; index as i">
+                                <td>{{ i + 1 }}</td>
+                                <td><a class="text-bold" href="#"  [routerLink]="['/dashboard/perfil', a.id]">{{ a.nombreApellido }}</a>
+                                </td>
+                                <td>
+                                    <li class="list-inline-item">
+                                        <img alt="Avatar" class="table-avatar" [src]="getImagen(a)">
+                                    </li>
+                               </td>
+                               <td><a class="text-bold">{{ a.email }}</a>
+                                    <br>
+                                    <span class="badge badge-success" *ngIf="a.google">
+                                        Usuario Google
+                                    </span>
+
+                                    <span class="badge badge-danger" *ngIf="!a.google">
+                                        Usuario App
+                                    </span>
+                                </td>
+                                <td class="project-actions text-left">
+                                    <!--<a class="btn btn-danger btn-sm" href="#">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Eliminar usuario
+                                    </a>-->
+                                    <button type="button" class="btn btn-sm btn-danger" (click)="deleteUsuario(a.id)">
+                                        <i class="fa fa-trash"></i>
+                                        Eliminar usuario
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+</div>
+  <!-- /.content-wrapper -->
