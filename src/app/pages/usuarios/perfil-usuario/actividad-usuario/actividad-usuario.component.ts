@@ -1,9 +1,11 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { PublicacionResponseDTO, UsuarioResponseDTO } from 'src/app/models/response.model';
 import { PublicacionService } from 'src/app/services/publicacion.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
+import { PublicacionesViewComponent } from '../../publicaciones/publicaciones-view/publicaciones-view.component';
 
 @Component({
   selector: 'app-actividad-usuario',
@@ -37,7 +39,8 @@ export class ActividadUsuarioComponent implements OnInit {
   
   constructor(private usuarioService: UsuarioService,
               public publicacionService: PublicacionService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              public dialog: MatDialog) {
     this.restarCantidadPublicaciones = new EventEmitter();
     this.sumarCantidadPublicacion = new EventEmitter();
   }
@@ -111,5 +114,16 @@ export class ActividadUsuarioComponent implements OnInit {
   public actualizarActividadUsuario(event) {
     this.publicaciones.unshift(event);
     this.sumarCantidadPublicacion.emit(1);
+  }
+
+  public view(publicacion: PublicacionResponseDTO) {
+    const dialogRef = this.dialog.open(PublicacionesViewComponent, {
+      data: { publicacion: publicacion,
+              usuario: this.usuario }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
