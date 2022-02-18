@@ -4,8 +4,6 @@
       <img class="img-circle img-bordered-sm" [src]="getUrlImagenUsuario(publicacion.usuario)" alt="User Image">
       <span class="username">
           <a href="#">{{ publicacion.usuario.nombreApellido }}</a>
-          <!-- <a *ngIf="!isUsuarioLogueado" href="#">{{ usuario.nombreApellido }}</a> -->
-          <!-- <a ng-click="eliminarPublicacion()" class="float-right btn-tool"><button><i class="fas fa-times"></i></button></a> -->
       </span>
       <span class="description">Subido el {{ publicacion.createAt | date:'dd/MM/yyyy' }}</span>
     </div>
@@ -44,24 +42,13 @@
                       <h4>
                         <!-- <img src="../../../../../assets/img/avatar2.png" class="img-circle img-bordered-sm" />  -->
                         <img [src]="getUrlImagenUsuario(c.usuario)" class="img-circle img-bordered-sm" /> 
-                        <small class="float-right">{{ c.createAt | date:'dd/MM/yyyy' }}</small>
                         <span class="username">
                           <a href="" class="text-bold">{{ c.usuario.nombreApellido }} </a>
                         </span>
-                        <!-- <p>
-                          <a href="">{{ c.usuario.nombreApellido }}</a>
-                        </p> -->
+                        <span class="description" style="font-size: 16px; font-weight: normal;">{{ c.comentario}}</span>
+
+                        <small class="float-right">{{ c.createAt | date:'dd/MM/yyyy' }}</small>
                       </h4>
-                    </div>
-  
-                    <div>
-  
-                    </div>
-                    <textarea class="form-control form-control-sm" type="text" [placeholder]="c.comentario" disabled></textarea>
-                    <div class="input-group-append">
-                      <button type="button" class="btn btn-lg btn-default" [disabled]="c.usuario.id !== usuario.id">
-                          <i class="fa fa-trash"></i>
-                      </button>
                     </div>
                   </div>
   
@@ -70,13 +57,10 @@
                 </div>         
               </div>
 
-
               <div class="text-center" style="margin-top: 5px;">
                 <a type="button" (click)="cambiarPagina(5)">Mostrar mas comentarios</a>
               </div>
 
-
-                
             </div>
           </div>
 
@@ -90,14 +74,9 @@
             <!-- END INVOCACION AL COMPONENTE DE LIKE/DISLIKE PUBLICACION -->
           </div>
         </div>
-          
-
-
         <!-- /.col -->
     </div>
     <!-- /.row -->
-
-    <!-- <input class="form-control form-control-sm" type="text" placeholder="Escribe un comentario"> -->
 
   </div>
   <!-- /.post -->
