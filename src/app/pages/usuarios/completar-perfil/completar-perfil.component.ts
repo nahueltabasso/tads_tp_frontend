@@ -31,14 +31,17 @@ export class CompletarPerfilComponent implements OnInit {
               private datePipe: DatePipe) {}
 
   ngOnInit(): void {
+    this.createForm();
+
     this.activatedRoute.paramMap.subscribe(params => {
       const id: string = params.get('id');
       this.usuarioService.getUsuarioById(id).subscribe((data: any) => {
         this.usuario = data.usuario;
+
         if (this.usuario.primerLogin > 1) {
           this.router.navigateByUrl('/dashboard');
+          return;
         }
-        this.createForm()
         this.loadData();
         this.usuarioService.getEstadosCombo().subscribe((estados: any) => {
           this.comboEstadoSentimental = estados.estados;
