@@ -91,6 +91,7 @@ export class ActividadUsuarioComponent implements OnInit {
         this.publicacionService.deletePublicacion(id).subscribe(data => {
           Swal.fire('Eliminada!', 'Publicacion eliminada con exito!', 'success');
           this.publicaciones = this.publicaciones.filter(p => p.id !== id);
+          if (this.publicaciones.length === 0) this.flagNoResults = true;
           // Emitimos la eliminacion de la publicacion para ser recuperada en el componente del Perfil
           this.restarCantidadPublicaciones.emit(1);
         }, (err) => {
@@ -112,8 +113,11 @@ export class ActividadUsuarioComponent implements OnInit {
   }
 
   public actualizarActividadUsuario(event) {
+    console.log(event);
     this.publicaciones.unshift(event);
+    console.log(this.publicaciones)
     this.sumarCantidadPublicacion.emit(1);
+    this.flagNoResults = false;
   }
 
   public view(publicacion: PublicacionResponseDTO) {

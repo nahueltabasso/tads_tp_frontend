@@ -21,6 +21,7 @@ export class PublicacionAddMultipleComponent implements OnInit {
   files: File[] = [];
   formulario: FormGroup;
   publicacion: PublicacionResponseDTO = new PublicacionResponseDTO();
+  loading: boolean = false;
 
   constructor(private publicacionService: PublicacionService,
               private fb: FormBuilder) {
@@ -60,6 +61,7 @@ export class PublicacionAddMultipleComponent implements OnInit {
   }
 
   public publicar() {
+    this.loading = true;
     if (this.formulario.invalid) return;
     const { titulo, descripcion } = this.formulario.value;
 
@@ -96,6 +98,7 @@ export class PublicacionAddMultipleComponent implements OnInit {
       this.formulario.reset();
       this.formulario.controls['titulo'].setValue('');
       this.formulario.controls['descripcion'].setValue('');
+      this.loading = false;
       Swal.fire('Subida!', 'Publicacion subida correctamente', 'success');
       this.publicacionRegistrada.emit(this.publicacion);
     });
@@ -111,6 +114,7 @@ export class PublicacionAddMultipleComponent implements OnInit {
       this.formulario.reset();
       this.formulario.controls['titulo'].setValue('');
       this.formulario.controls['descripcion'].setValue('');
+      this.loading = false;
       Swal.fire('Subida!', 'Publicacion subida correctamente', 'success');
       this.publicacionRegistrada.emit(this.publicacion);
     });
