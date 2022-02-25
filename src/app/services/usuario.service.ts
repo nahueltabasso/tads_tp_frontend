@@ -90,10 +90,11 @@ export class UsuarioService {
     return `${this.url}/perfiles/${usuario.srcImagen}`;
   }
 
-  getAllUsuariosPaginados(idUsuario: string): Observable<UsuarioResponseDTO[]> {
+  getAllUsuariosPaginados(page: number): Observable<UsuarioResponseDTO[]> {
+    console.log("getAllUsuariosPaginados");
     if (this.cargando) return;
     this.cargando = true;
-    return this.http.get<UsuarioResponseDTO[]>(this.endPoint + '/getAllUsuariosPaginados/' + idUsuario + '?size=5&page=' + this.usuariosPage, 
+    return this.http.get<UsuarioResponseDTO[]>(this.endPoint + '/getAllUsuariosPaginados' + '?desde=' + page, 
     { headers: { 'Authorization': localStorage.getItem('auth_token') } })
       .pipe(
         tap(() => {
