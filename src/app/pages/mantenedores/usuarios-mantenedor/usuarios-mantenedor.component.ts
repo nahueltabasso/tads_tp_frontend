@@ -15,7 +15,8 @@ export class UsuariosMantenedorComponent implements OnInit {
   usuarios: UsuarioResponseDTO[] = [];
   flagNoResults: boolean = false;
   flagLoading: boolean = false;
-  ocultarBoton: boolean = true;
+  ocultarBotonSiguiente: boolean = false;
+  ocultarBotonAnterior: boolean = true;
   totalUsuarios: number = 0;
   page: number = 0;
 
@@ -25,19 +26,12 @@ export class UsuariosMantenedorComponent implements OnInit {
   ngOnInit(): void {
     this.usuarioLogueado = this.authService.usuario;
     this.flagLoading = true;
-    this.cargarUsuarios();
-    /* this.usuarioService.getAll().subscribe((data: any) => {
+    this.usuarioService.getAllUsuariosPaginados(this.page).subscribe((data: any) => {
       this.usuarios = data.usuarios;
-      console.log("USUARIOS", this.usuarios);
-      if (this.usuarios.length === 0) {
-        this.flagNoResults = true;
-        this.flagLoading = false;
-        return;
-      }
-      this.flagNoResults = false;
-      this.usuarios = this.usuarios.filter(a => a.id !== this.usuarioLogueado.id);
-      this.flagLoading = false;
-    }); */
+      this.totalUsuarios = data.totalUsuarios;
+      this.cargarUsuarios();
+    });
+    
   }
 
   public getImagen(u: UsuarioResponseDTO) {
@@ -45,34 +39,25 @@ export class UsuariosMantenedorComponent implements OnInit {
   }
 
   public deleteUsuario(id: string) {
-    console.log("Entra a deleteUsuario ID=", id);
     this.usuarioService.deleteUsuarioById(id).subscribe((data: any) => {
-      console.log(data);
-    }, (err) => {console.log("ERR", err)});
+      Swal.fire('Eliminado!', 'Usuario eliminado con exito!', 'success');
+      this.usuarios = this.usuarios.filter(p => p.id !== id);
+    }, (err) => {
+      Swal.fire('Error!', `${err.error.msg}`, 'error');
+    });
   }
 
   public cargarUsuarios() {
-    /* this.usuarioService.getAll().subscribe((data: any) => {
-      this.usuarios = data.usuarios;
-      console.log("USUARIOS", this.usuarios);
-    }); */
-    console.log("cargarUsuarios");
-    this.usuarioService.getAllUsuariosPaginados(this.page).subscribe((data: any) => {
-      this.usuarios = data.usuarios;
-      console.log("USUARIOS", this.usuarios);
-    });
-
-
     if (this.usuarios.length > 0) {
-      this.flagLoading = true;
+      this.flagLoading = false;
+      this.usuarios = [];
       this.usuarioService.getAllUsuariosPaginados(this.page).subscribe((data: any) => {
         let usuariosNuevos = data.usuarios;
-        console.log("USUARIOS NUEVOS: ", usuariosNuevos);
         usuariosNuevos.forEach(p => this.usuarios.push(p));
         this.totalUsuarios = data.totalUsuarios;
-        this.ocultarBoton = false;
         this.flagLoading = false;
-        this.setFlagNoResults();
+        this.flagNoResults = false;
+        this.usuarios = this.usuarios.filter(a => a.id !== this.usuarioLogueado.id);
       }); 
     } else {
       this.flagNoResults = true;
@@ -81,19 +66,8 @@ export class UsuariosMantenedorComponent implements OnInit {
 
   public cambiarPagina(page: number) {
     this.page = this.page + page;
-    if (this.page > this.totalUsuarios) {
-      Swal.fire('Atencion', 'No hay mas usuarios por ver!', 'info');
-      return;
-    }
-    this.ocultarBoton = true;
+    this.page === 0 ? this.ocultarBotonAnterior = true : this.ocultarBotonAnterior = false;
+    this.page + page > this.totalUsuarios ? this.ocultarBotonSiguiente = true : this.ocultarBotonSiguiente = false;
     this.cargarUsuarios();
-  }
-
-  
-
-  private setFlagNoResults() {
-    if (this.usuarios.length === 0) {
-      this.flagNoResults = true;
-    }
   }
 }

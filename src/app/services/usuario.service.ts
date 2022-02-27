@@ -91,10 +91,9 @@ export class UsuarioService {
   }
 
   getAllUsuariosPaginados(page: number): Observable<UsuarioResponseDTO[]> {
-    console.log("getAllUsuariosPaginados");
     if (this.cargando) return;
     this.cargando = true;
-    return this.http.get<UsuarioResponseDTO[]>(this.endPoint + '/getAllUsuariosPaginados' + '?desde=' + page, 
+    return this.http.get<UsuarioResponseDTO[]>(this.endPoint + '/getAllUsuarios/Paginados' + '?desde=' + page, 
     { headers: { 'Authorization': localStorage.getItem('auth_token') } })
       .pipe(
         tap(() => {
@@ -105,7 +104,6 @@ export class UsuarioService {
   }
 
   deleteUsuarioById(idUsuario: string): Observable<string> {
-    console.log("Entra a deleteUsuarioById", idUsuario);
     return this.http.delete<string>(this.endPoint + '/' + idUsuario, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
 }
