@@ -13,9 +13,6 @@
                     No hay usuarios para administrar!
                 </div> 
 
-                <div class="text-center" *ngIf="flagLoading">
-                    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                </div>
 
                 <div *ngIf="!flagNoResults">
 
@@ -69,7 +66,7 @@
                     <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
                 </div>
 
-                <div class="text-center" >
+                <div class="text-center my-4">
                     <button mat-fab color="primary" type="button" *ngIf="!ocultarBotonAnterior" (click)="cambiarPagina(-5)">
                         ◄
                     </button>
