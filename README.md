@@ -1,8 +1,19 @@
 # TECNICAS AVANZADAS DE DESARROLLO DE SOFTWARE (TADS)
 
+## DOCENTES
+
+* Meca, Adrian
+* Otaduy, Andres
+
+## INTEGRANTES
+
+* Beron, Fernando - Legajo: 31836
+* Tabasso, Nahuel - Legajo: 43204
+
+## DESCRIPCION DEL PROYECTO
+
 Trabajo practico final Front-End de la asignatura Tecnicas Avanzadas de Desarrollo de Software (TADS) de la carrera de Ingenieria en Sistemas de informacion 
-de UTN FRRo. Esta aplicacion esta desarrollada en Angular 9 integrando el template de codigo abierto y gratuito de [AdminLTE3](https://adminlte.io/themes/v3/) . Esta aplicacion se desarrollo aplicando
-el patron de diseño para el manejo de estado de la App REDUX. 
+de UTN FRRo. Esta aplicacion esta desarrollada en Angular 9 integrando el template de codigo abierto y gratuito de [AdminLTE3](https://adminlte.io/themes/v3/) .  
 El sistema a desarrollar será una mini red social donde los usuarios podrán compartir publicaciones con imágenes, las cuales podrán ser comentadas y reaccionadas por otros usuarios. 
 Los usuarios podrán relacionarse o conectarse con otros usuarios mediantes grupos de amistad. Los usuarios tendrán el control de quien puede ver, comentar o reaccionar a sus publicaciones.
 
@@ -20,8 +31,8 @@ Despues instalamos angular cli
 `
 ## LEVANTAR LA APP EN AMBIENTE LOCAL
 	- git clone <repo> 
-	- git checkout development 
-	- git pull origin development 
+	- git checkout develop 
+	- git pull origin develop 
 	- npm install
 	- ng serve --poll=2000
     - Navegar hacia http://localhost:4200/ 
