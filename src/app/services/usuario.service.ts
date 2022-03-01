@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { UsuarioResponseDTO } from '../models/response.model';
 
@@ -12,7 +13,8 @@ export class UsuarioService {
   imgUrl: string = '';
   usuario: UsuarioResponseDTO = new UsuarioResponseDTO();
   url: string = environment.server_url + '/file';
-
+  usuariosPage = 1;
+  cargando: boolean = false;
   endPoint = environment.server_url + '/usuarios';
   endPointFiles = environment.server_url + '/file';
 
@@ -86,5 +88,22 @@ export class UsuarioService {
         return `${this.url}/perfiles/no-image.png`;
     } 
     return `${this.url}/perfiles/${usuario.srcImagen}`;
+  }
+
+  getAllUsuariosPaginados(page: number): Observable<UsuarioResponseDTO[]> {
+    if (this.cargando) return;
+    this.cargando = true;
+    return this.http.get<UsuarioResponseDTO[]>(this.endPoint + '/getAllUsuarios/Paginados' + '?desde=' + page, 
+    { headers: { 'Authorization': localStorage.getItem('auth_token') } })
+      .pipe(
+        tap(() => {
+          this.usuariosPage += 1;
+          this.cargando = false;
+        })
+      );
+  }
+
+  deleteUsuarioById(idUsuario: string): Observable<string> {
+    return this.http.delete<string>(this.endPoint + '/' + idUsuario, { headers: { 'Authorization': localStorage.getItem('auth_token') } });
   }
 }
